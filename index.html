@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CERA - Españoles viviendo en Estados Unidos</title>
+    <meta name="author" content="Irene de la Torre Arenas">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+    <link rel="stylesheet" href="libraries/bootstrap/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,400,700&display=swap" rel="stylesheet"> 
+    <link href="app/app.css" rel="stylesheet"/>
+    <link href="app/map/map.css" rel="stylesheet"/>
+</head>
+<body>
+    <header class="container">
+        <div class="row justify-content-center">
+            <h1 class="col-lg-12">Españoles viviendo en Estados Unidos</h1>
+            <p class="col-lg-5 col-md-12 spanish">
+                Visualización de los españoles registrados en el
+                <a href="https://www.ine.es/ss/Satellite?c=Page&cid=1254735793323&pagename=CensoElectoral%2FINELayout&L=0">
+                    CERA
+                </a>
+                (Censo Electoral de los Residentes Ausentes)
+            </p>
+        </div>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class='informacion hidden'>
+                <p id="pais"></p>
+                <p id="consulado"></p>
+                <p><span id="censo"></span> españoles</p>
+            </div>
+            <div id='map'></div>
+        </div>
+    </div>
+    <footer>
+    </footer>
+    <script src="libraries/d3/d3.v7.min.js"></script>
+    <script src="libraries/d3/d3-geo.v1.min.js"></script>
+    <script src="libraries/d3/d3-geo-projection.v2.min.js"></script>
+    <script src="libraries/d3/topojson.v1.min.js"></script>
+    <!-- <script src="https://unpkg.com/d3-force-cluster@latest"></script> -->
+    <script src="app/map/projection.js"></script>
+    <script src="app/parseData.js"></script>
+    <script src="app/map/map.js"></script>
+    <script src="app/app.js"></script>
+</body>
+</html>

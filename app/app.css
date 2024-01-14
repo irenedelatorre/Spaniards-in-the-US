@@ -1,0 +1,12 @@
+/* Main */
+:root {
+    --text: #222222;
+    --background-color: #f2f2f2;
+}
+
+body {
+    font-size: 16px;
+    line-height: 1.375em;
+    color: var(--text);
+    background:  var(--background-color);
+}

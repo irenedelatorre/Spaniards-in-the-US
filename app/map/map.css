@@ -1,0 +1,28 @@
+
+#map {
+    width: 100%;
+    /* min-height: 500px; */
+    height: 70vh;
+    margin-bottom: 5em;
+}
+
+.map .nation {
+    fill: none;
+    stroke: var(--text);
+}
+
+.map .states {
+    fill: none;
+    stroke: var(--text);
+}
+
+
+.map .counties {
+    fill: none;
+    stroke: var(--text);
+}
+
+.lines path {
+    stroke: var(--text);
+    fill: none;
+}
