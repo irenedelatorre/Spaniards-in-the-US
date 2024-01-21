@@ -4,30 +4,15 @@ class mapConsulates {
         this.map = item.map;
         this.data = item.data;
         this.info = item.info;
+        this.groups = item.groups;
         this.selectPlot = d3.select(`#${this.id}`);
         this.year = d3.max(this.data, d => d.year);
 
-        // this. = item.nodes.map((d) => Object.create(d));
-        // this.links = item.links.map((d) => Object.create(d));
-        // this.floors = item.floors;
-        // this.metadata = item.metadata;
-        // this.id = item.id;
-        // this.selectPlot = d3.select(`#${this.id}`);
-        // this.selected_level = "All";
-        // this.scaleColor = item.scaleColor;
-        // this.core_colors = item.core_colors;
-        // this.options = item.options;
-        // this.hideNaN = false;
-        // this.r = 5;
-        // this.padding = 25;
-
-        console.log(this.map, "meta");
         this.init();
         this.createSVG();
         this.drawUS();
         this.drawLines();
         this.drawBubbles();
-
     }
 
     init() {
@@ -144,9 +129,15 @@ class mapConsulates {
         console.log("mapping", this.map.objects)
         this.mapLevel = this.plotMap
             .selectAll("g")
-            .data(["counties",  "states", "nation"])
+            .data([
+                "nation",
+                "jurisdiction",
+                "counties",
+                "states",
+                "jurisdiction",
+            ])
             .join("g")
-            .attr("class", d => d);
+            .attr("class", (d, i) => `${d} sort-${i}`);
         
         this.land = this.mapLevel
             .selectAll(".land")
@@ -156,20 +147,44 @@ class mapConsulates {
                 if (d === "counties") {
                     const drawCounties = this.info.map(d => d.county)
                         .filter(d => d !== "");
-
-                        console.log(this.map.objects.counties)
                     const countyNames = drawCounties[0].split(", ");
                     const counties = (this.map.objects.counties.geometries).filter(e => 
                         countyNames.includes(e.properties.name)
                     )
 
                     geo = {type: "GeometryCollection", geometries: counties};
-                }
-                return topojson.feature(this.map, geo).features
+                } 
+                return d !== "jurisdiction"  ? 
+                    topojson.feature(this.map, geo).features :
+                    "";
             })
             .join('path')
             .attr('class', d => `land ${d.properties.name}`)
             .attr('d', this.path);
+
+        this.jurisdiction =  this.plotMap
+            .selectAll(".jurisdiction")
+            .selectAll(".land")
+            .data(this.groups)
+            .join("path")
+            .attr("class", d => `land jurisdiction-${d[0]}`)
+            .attr("d", d => {
+                const map = this.map.objects.states;
+                const states = d[1].map(e => e.jurisdiction);
+                const geo = (map.geometries).filter(e => 
+                    states.includes(e.properties.name)
+                );
+                const jurisdiction = {
+                    type: "GeometryCollection",
+                    geometries: geo
+                };
+                return geo.length > 0 ?
+                    this.path(
+                        topojson.merge(this.map, jurisdiction.geometries)
+                    ) :
+                    "";
+            })
+            // .
 
     }
 

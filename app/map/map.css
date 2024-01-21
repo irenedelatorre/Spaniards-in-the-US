@@ -11,15 +11,28 @@
     stroke: var(--text);
 }
 
-.map .states {
+.map .jurisdiction.sort-1 path {
+    fill: none;
+    fill: lightgrey;
+}
+
+.map .jurisdiction.sort-4 path {
     fill: none;
     stroke: var(--text);
+    stroke-width: 1px;
+}
+
+.map .states {
+    fill: none;
+    stroke: grey;
+    stroke-width: 0.5px;
 }
 
 
 .map .counties {
     fill: none;
-    stroke: var(--text);
+    stroke: grey;
+    stroke-width: 0.5px;
 }
 
 .lines path {
