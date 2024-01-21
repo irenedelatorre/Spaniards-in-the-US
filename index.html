@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,400,700&display=swap" rel="stylesheet"> 
     <link href="app/app.css" rel="stylesheet"/>
     <link href="app/map/map.css" rel="stylesheet"/>
+    <link href="app/lineChart/lineChart.css" rel="stylesheet"/>
 </head>
 <body>
     <header class="container">
@@ -30,8 +31,8 @@
                 <p id="consulado"></p>
                 <p><span id="censo"></span> españoles</p>
             </div>
-            <div id="map"></div>
-            <div id="changeByTime"></div>
+            <div id="map" class="row"></div>
+            <div id="changeByTime" class="row"></div>
         </div>
     </div>
     <footer>
@@ -44,6 +45,7 @@
     <script src="app/map/projection.js"></script>
     <script src="app/parseData.js"></script>
     <script src="app/map/map.js"></script>
+    <script src="app/lineChart/lineChart.js"></script>
     <script src="app/lineChart/smallMultiple.js"></script>
     <script src="app/app.js"></script>
 </body>

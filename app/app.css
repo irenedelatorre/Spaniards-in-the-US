@@ -10,3 +10,32 @@ body {
     color: var(--text);
     background:  var(--background-color);
 }
+
+h3 {
+    font-size: 1.25em;
+    text-transform: capitalize;
+    font-weight: bold;
+    margin-bottom: 0;
+    color: var(--text);
+}
+/* Small Multiples */
+#changeByTime {
+    max-width: 1700px;
+    align-items: flex-start;
+    align-content: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    justify-content: center; 
+}
+
+#changeByTime .plot {
+    width: 18%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    height: auto;
+    border: 1px solid black;
+    padding: 0;
+}

@@ -9,7 +9,7 @@ Promise.all([
 ])
 .then(function(files) {
 
-    const consulates_es = files[0];
+    const consulates_es = files[0].sort((a, b) => a.date - b.date);
     const consulates_es_info = files[1];
     const us = files[2];
 
@@ -23,10 +23,15 @@ Promise.all([
         g => g.general_consulate
     );
 
-    const consulatesGroups = d3.groups(
+    const consulatesGroupsTime = d3.groups(
         consulates_es,
-        g => g.consulate
+        g => g.consulate_id
     );
+
+    
+    console.log(consulatesGroupsTime)
+    const dateExtent = d3.extent(consulates_es, d => d.date);
+    const censusExtent = [0, d3.max(consulates_es, d => d.census)];
 
     // create map with information about spanish consulates
     const us_map = new mapConsulates({
@@ -39,7 +44,11 @@ Promise.all([
 
     const change_line = new smallMultiple({
         id: "changeByTime", 
-        data: consulatesGroups,
+        data: consulatesGroupsTime,
+        type: "line",
+        dateExtent: dateExtent,
+        yExtent: censusExtent,
+        height: 300
     })
 
     // update on windows resize
