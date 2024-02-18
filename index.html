@@ -6,37 +6,42 @@
     <meta name="author" content="Irene de la Torre Arenas">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
     <link rel="stylesheet" href="libraries/bootstrap/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,400,700&display=swap" rel="stylesheet"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Libre+Caslon+Text&display=swap" rel="stylesheet">
     <link href="app/app.css" rel="stylesheet"/>
     <link href="app/map/map.css" rel="stylesheet"/>
     <link href="app/lineChart/lineChart.css" rel="stylesheet"/>
+    <link href="app/controls/controls.css" rel="stylesheet"/>
 </head>
 <body>
-    <header class="container">
-        <div class="row justify-content-center">
-            <h1 class="col-lg-12">Españoles viviendo en Estados Unidos</h1>
-            <p class="col-lg-5 col-md-12 spanish">
-                Visualización de los españoles registrados en el
-                <a href="https://www.ine.es/ss/Satellite?c=Page&cid=1254735793323&pagename=CensoElectoral%2FINELayout&L=0">
-                    CERA
-                </a>
-                (Censo Electoral de los Residentes Ausentes)
-            </p>
-        </div>
+    <header>
+        <h1>
+            Where do Spaniards live in the US?
+        </h1>
+        <p class="standfirst">
+            A snapshot of where Spaniards study, work, 
+            or form a family abroad
+        </p>
     </header>
-    <div class="container">
-        <div class="row">
-            <div class="informacion hidden">
-                <p id="pais"></p>
-                <p id="consulado"></p>
-                <p><span id="censo"></span> españoles</p>
-            </div>
-            <div id="map" class="row"></div>
-            <div id="changeByTime" class="row"></div>
+    <div class="container-fluid map-wrapper">
+        <div class="dropdown">
+            <label>Choose a jurisdiction</label>
+            <select id="consulates-list"
+                class="form-select" aria-label="Default"></select>
         </div>
+        <!-- <div class="informacion hidden">
+            <p id="pais"></p>
+            <p id="consulado"></p>
+            <p><span id="censo"></span> españoles</p>
+        </div> -->
+        <div id="map" class="row"></div>
     </div>
-    <footer>
-    </footer>
+    <div id="changeByTimeTotal" class="row"></div>
+    <div id="changeByTimeUSSpain" class="row"></div>
+    <div id="changeByTime" class="row"></div>
+    <footer></footer>
+
     <script src="libraries/d3/d3.v7.min.js"></script>
     <script src="libraries/d3/d3-geo.v1.min.js"></script>
     <script src="libraries/d3/d3-geo-projection.v2.min.js"></script>
@@ -44,6 +49,7 @@
     <!-- <script src="https://unpkg.com/d3-force-cluster@latest"></script> -->
     <script src="app/map/projection.js"></script>
     <script src="app/parseData.js"></script>
+    <script src="app/controls/controls.js"></script>
     <script src="app/map/map.js"></script>
     <script src="app/lineChart/lineChart.js"></script>
     <script src="app/lineChart/smallMultiple.js"></script>

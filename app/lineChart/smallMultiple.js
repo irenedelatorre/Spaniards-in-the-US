@@ -37,7 +37,8 @@ class smallMultiple {
                 full_data: that.data,
                 dateExtent: that.dateExtent,
                 yExtent: that.yExtent,
-                height: that.height
+                height: that.height,
+                scale: that.scale
             });
         };
     }

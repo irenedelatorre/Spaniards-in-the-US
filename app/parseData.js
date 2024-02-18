@@ -29,5 +29,15 @@ const parse = {
             );
             d.lonlat = thisConsulate[0].lonlat;
         })
+    },
+
+    us_citizens: function(d) {
+        return {
+            year: +d.year,
+            country: 'Spain',
+            consulate: 'US citizens in Spain',
+            date: new Date(`1-1-${d.year}`),
+            census: +d.censo
+        }
     }
 }

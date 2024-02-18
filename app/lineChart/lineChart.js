@@ -8,8 +8,9 @@ class lineChart {
         this.dateExtent = item.dateExtent;
         this.yExtent = item.yExtent;
         this.tickFormat = d3.timeFormat("%Y");
-        this.height = item.height;
+        this.heightCSS = item.height;
 
+        console.log(item.yExtent, "hello")
         this.addTitle();
         this.init();
         this.createSVG();
@@ -26,17 +27,21 @@ class lineChart {
     
 
     init() {
-        this.margin = {t: 5, l: 40, r: 20, b: 10};
+        this.margin = {
+            t: 15,
+            l: 100,
+            r: 30,
+            b: 60
+        };
 
         this.width = 
             document.getElementById(this.id).clientWidth - 
             this. margin.r - 
             this.margin.l;
 
-        this.height = 
-            this.height - 
-            this.margin.t - 
-            this.margin.b;
+        this.height = this.heightCSS - this.margin.t - this.margin.b;
+
+            console.log(this.height)
 
         this.scale_y = d3
             .scaleLinear()
@@ -50,8 +55,8 @@ class lineChart {
       
         this.line = d3
             .line()
-            .x((d) => this.scale_x(d.date))
-            .y((d) => this.scale_y(d.census));
+            .x((d) => d.date)
+            .y((d) => d.census);
     }
 
     createSVG() {
@@ -91,8 +96,31 @@ class lineChart {
     add_axis() {
         const axis_x = d3
             .axisBottom(this.scale_x)
-            .tickPadding(8)
-            .ticks(4)
+            .tickPadding(4)
+            .tickValues([
+                this.dateExtent[0],
+                new Date("1-1-2004"),
+                new Date("1-1-2005"),
+                new Date("1-1-2006"),
+                new Date("1-1-2007"),
+                new Date("1-1-2008"),
+                new Date("1-1-2009"),
+                new Date("1-1-2010"),
+                new Date("1-1-2011"),
+                new Date("1-1-2012"),
+                new Date("1-1-2013"),
+                new Date("1-1-2014"),
+                new Date("1-1-2015"),
+                new Date("1-1-2016"),
+                new Date("1-1-2017"),
+                new Date("1-1-2018"),
+                new Date("1-1-2019"),
+                new Date("1-1-2020"),
+                new Date("1-1-2021"),
+                new Date("1-1-2022"),
+                new Date("1-1-2023"),
+                this.dateExtent[1]
+            ])
             .tickFormat(this.tickFormat);
     
         const axis_y = d3
@@ -100,7 +128,7 @@ class lineChart {
             .scale(this.scale_y)
             .tickSize(-this.width)
             .ticks(6)
-            .tickPadding(5);
+            .tickPadding(4);
 
         this.axis_x.call(axis_x);
         this.axis_y.call(axis_y);
@@ -110,7 +138,6 @@ class lineChart {
 
     build_chart() {
         this.add_axis();
-        console.log(this.full_data.filter(d => d[0] !== this.consulate.id))
 
         // background data
         this.plot_chart
@@ -118,25 +145,30 @@ class lineChart {
             .data(this.full_data.filter(d => d[0] !== this.consulate.id))
             .join("path")
             .attr("class", "line bkg-line")
-            .attr("d", d => this.line(d[1]))
+            .attr("d", d => this.line(d[1].sort((a, b) => a.date - b.date)))
 
         // this consulate
-        this.plot_chart
+        const thisConsulate = this.plot_chart
+            .append("g")
+            .attr("class", "highlighted-line");
+        
+        thisConsulate
             .selectAll(".main-line")
-            .data([this.data[1]])
+            .data([this.data[1]].sort((a, b) => a.date - b.date))
             .join("path")
             .attr("class", "line main-line")
             .attr("d", this.line);
 
-        // this consulate
-        const last_point = this.data[1][this.data[1].length-1];
-        this.plot_chart
+        const lastDate = d3.max(this.data[1], d => d.date);
+        const last_point = this.data[1].filter(d => d.date === lastDate)[0];
+        console.log(last_point)
+        thisConsulate
             .selectAll(".main-dot")
             .data([last_point])
             .join("circle")
             .attr("class", "main-dot")
             .attr("cx", d => this.scale_x(d.date))
             .attr("cy", d => this.scale_y(d.census))
-            .attr("r", 3);
+            .attr("r", 24 / 2);
     }
 }

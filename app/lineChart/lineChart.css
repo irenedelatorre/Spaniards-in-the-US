@@ -1,6 +1,46 @@
 
+:root {
+    --axis-lines: var(--grey-soft);
+    --axis-text: var(--black)
+}
 
-.chart .line {
+
+
+/* axis */
+
+.plot h3 {
+    position: absolute;
+    top: 90px;
+    left: 128px;
+}
+
+.axis-y .tick line {
+    stroke-width: 1px;
+    stroke: var(--axis-lines);
+}
+
+.axis .tick text {
+    color: var(--black);
+    font-family: var(--font-sans);
+    font-size: 24px;
+    font-weight: 400;
+}
+
+/* lines */
+.bkg-line {
+    stroke-width: 3px;
+    stroke: var(--lime-green);
     fill: none;
-    stroke: black;
+}
+
+.highlighted-line path {
+    stroke-width: 6px;
+    stroke: var(--green);
+    fill: none;
+}
+
+.highlighted-line circle {
+    stroke-width: 6px;
+    stroke: var(--green);
+    fill: white;
 }

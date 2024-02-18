@@ -16,7 +16,10 @@ Load data, 2005 - 2023 from the INE database
 ```{r, echo=FALSE}
 
 library(readxl)
-
+paisconsu_03 <- read_excel("../data/by_consulate_year/paisconsu_03.xls", 
+    skip = 5)
+paisconsu_04 <- read_excel("../data/by_consulate_year/paisconsu_04.xls", 
+    skip = 5)
 paisconsu_05 <- read_excel("../data/by_consulate_year/paisconsu_05.xls", 
     skip = 5)
 paisconsu_06 <- read_excel("../data/by_consulate_year/paisconsu_06.xls", 
@@ -62,6 +65,8 @@ Clean the data frame to get only the results for the US consulates.
 ```{r}
 library(dplyr)
 source("clean_2005.R")
+year_03 <- clean_2005(paisconsu_03, 2003, "number")
+year_04 <- clean_2005(paisconsu_04, 2004, "number")
 year_05 <- clean_2005(paisconsu_05, 2005, "number")
 year_06 <- clean_2006(paisconsu_06, 2006, "number")
 year_07 <- clean_2006(paisconsu_07, 2007, "number")
@@ -84,7 +89,6 @@ year_21 <- clean_2021(paisconsu_21, 2021)
 year_22 <- clean_2021(paisconsu_22, 2022)
 year_23 <- clean_2021(paisconsu_23, 2023)
 
-year_23$censo_12 <- ""
 ```
 
 Merge data frames.
@@ -92,6 +96,8 @@ Merge data frames.
 ```{r}
 library(tidyr)
 all_years <- rbind(
+  year_03,
+  year_04,
   year_05,
   year_06,
   year_07,
@@ -130,7 +136,8 @@ us_consulates <- melt(
   mutate(
     month = gsub("^.*_", "", month)
     # mutate(x=str_split(x, "\\s") %>%  map(., as.numeric) %>% map_dbl(., sum))
-  )
+  ) %>%
+  filter(censo != "-")
 ```
 
 Export CSV
@@ -138,5 +145,288 @@ Export CSV
 ```{r}
 
 write.csv(us_consulates, "../data/output/cera_consulados.csv", row.names=FALSE)
+
+```
+
+Pick only the totals
+```{r}
+library(dplyr)
+source("us_total.R")
+year_03_us <- clean_2005_us(paisconsu_03, 2003, "number")
+year_04_us <- clean_2005_us(paisconsu_04, 2004, "number")
+year_05_us <- clean_2005_us(paisconsu_05, 2005, "number")
+year_06_us <- clean_2006_us(paisconsu_06, 2006, "number")
+year_07_us <- clean_2006_us(paisconsu_07, 2007, "number")
+year_08_us <- clean_2006_us(paisconsu_08, 2008, "number")
+year_09_us <- clean_2006_us(paisconsu_09, 2009, "number2")
+year_10_us <- clean_2006_us(paisconsu_10, 2010, "number")
+year_11_us <- clean_2006_us(paisconsu_11, 2011, "number") %>%
+  select(!censo_02) %>%
+  rename(censo_02 = "a 1-02-2011 (nuevo) (**)")
+year_12_us <- clean_2012_us(paisconsu_12, 2012, "number")
+year_13_us <- clean_2012_us(paisconsu_13, 2013, "number")
+year_14_us <- clean_2014_us(paisconsu_14, 2014, "number")
+year_15_us <- clean_2014_us(paisconsu_15, 2015, "month")
+year_16_us <- clean_2014_us(paisconsu_16, 2016, "month")
+year_17_us <- clean_2014_us(paisconsu_17, 2017, "month")
+year_18_us <- clean_2014_us(paisconsu_18, 2018, "month")
+year_19_us <- clean_2014_us(paisconsu_19, 2019, "month")
+year_20_us <- clean_2014_us(paisconsu_20, 2020, "month")
+year_21_us <- clean_2021_us(paisconsu_21, 2021)
+year_22_us <- clean_2021_us(paisconsu_22, 2022)
+year_23_us <- clean_2021_us(paisconsu_23, 2023)
+
+```
+
+
+Merge data frames.
+
+```{r}
+library(tidyr)
+all_years_us <- rbind(
+  year_03_us,
+  year_04_us,
+  year_05_us,
+  year_06_us,
+  year_07_us,
+  year_08_us,
+  year_09_us,
+  year_10_us,
+  year_11_us,
+  year_12_us,
+  year_13_us,
+  year_14_us,
+  year_15_us,
+  year_16_us,
+  year_17_us,
+  year_18_us,
+  year_19_us,
+  year_20_us,
+  year_21_us,
+  year_22_us,
+  year_23_us
+  )
+```
+
+
+Transform data into a long format.
+
+```{r}
+
+library(reshape2)
+us_total <- melt(
+  all_years_us,
+  id.vars=c("pais_id", "pais", "consulado_id", "consulado", "year")
+  ) %>%
+  rename(
+    censo = value,
+    month = variable) %>%
+  mutate(
+    month = gsub("^.*_", "", month)
+    # mutate(x=str_split(x, "\\s") %>%  map(., as.numeric) %>% map_dbl(., sum))
+  ) %>%
+  filter(censo != "-")
+```
+
+Export CSV
+
+```{r}
+
+write.csv(us_total, "../data/output/cera_total_us.csv", row.names=FALSE)
+
+```
+
+
+---
+
+US Citizens living in Spain. Data from the (INE)[https://www.ine.es/jaxi/Tabla.htm?path=/t20/e245/p08/l0/&file=03005.px&L=0]
+
+```{r}
+library(readxl)
+
+us_citizens_in_spain <- read_excel("../data/us_citizens_in_spain.xlsx", skip = 7)
+
+```
+
+
+Edit structure
+
+```{r}
+
+library(dplyr)
+
+us_citizens_in_spain <- us_citizens_in_spain %>%
+  rename(provincia = "...1") %>%
+  select_if(~!all(is.na(.))) %>%
+  filter(provincia != "Estados Unidos de América")
+
+library(reshape2)
+
+us_citizens_in_spain_final <- melt(
+  us_citizens_in_spain,
+  id.vars=c("provincia")
+  ) %>%
+  rename(
+    censo = value,
+    year = variable) %>%
+  select_if(~!all(is.na(.))) %>%
+  mutate(year = as.numeric(as.character(year)))
+
+```
+
+Get only total data for now
+```{r}
+
+us_citizens_in_spain_final_total <- us_citizens_in_spain_final %>%
+  filter(provincia == "TOTAL ESPAÑA", year >= 2003)
+
+write.csv(
+  us_citizens_in_spain_final_total,
+  "../data/output/us_citizens_in_spain.csv",
+  row.names=FALSE
+  )
+
+```
+
+# Totals by country
+
+Clean the data frame to get only the results with totals.
+
+```{r}
+library(dplyr)
+source("totals.R")
+year_03_total <- clean_2005_total(paisconsu_03, 2003, "number")
+year_04_total <- clean_2005_total(paisconsu_04, 2004, "number")
+year_05_total <- clean_2005_total(paisconsu_05, 2005, "number")
+year_06_total <- clean_2006_total(paisconsu_06, 2006, "number")
+year_07_total <- clean_2006_total(paisconsu_07, 2007, "number")
+year_08_total <- clean_2006_total(paisconsu_08, 2008, "number")
+year_09_total <- clean_2006_total(paisconsu_09, 2009, "number2")
+year_10_total <- clean_2006_total(paisconsu_10, 2010, "number")
+year_11_total <- clean_2006_total(paisconsu_11, 2011, "number") %>%
+  select(!censo_02) %>%
+  rename(censo_02 = "a 1-02-2011 (nuevo) (**)")
+year_12_total <- clean_2006_total(paisconsu_12, 2012, "number")
+year_13_total <- clean_2006_total(paisconsu_13, 2013, "number")
+year_14_total <- clean_2014_total(paisconsu_14, 2014, "number")
+year_15_total <- clean_2014_total(paisconsu_15, 2015, "month")
+year_16_total <- clean_2014_total(paisconsu_16, 2016, "month")
+year_17_total <- clean_2014_total(paisconsu_17, 2017, "month")
+year_18_total <- clean_2014_total(paisconsu_18, 2018, "month")
+year_19_total <- clean_2014_total(paisconsu_19, 2019, "month")
+year_20_total <- clean_2014_total(paisconsu_20, 2020, "month")
+year_21_total <- clean_2021_total(paisconsu_21, 2021)
+year_22_total <- clean_2021_total(paisconsu_22, 2022)
+year_23_total <- clean_2021_total(paisconsu_23, 2023)
+
+```
+
+Merge data frames.
+
+```{r}
+library(tidyr)
+all_years_total <- rbind(
+  year_03_total,
+  year_04_total,
+  year_05_total,
+  year_06_total,
+  year_07_total,
+  year_08_total,
+  year_09_total,
+  year_10_total,
+  year_11_total,
+  year_12_total,
+  year_13_total,
+  year_14_total,
+  year_15_total,
+  year_16_total,
+  year_17_total,
+  year_18_total,
+  year_19_total,
+  year_20_total,
+  year_21_total,
+  year_22_total,
+  year_23_total
+  ) %>%
+  select_if(~!all(is.na(.)))
+```
+
+
+Transform data into a long format.
+
+```{r}
+
+library(reshape2)
+total_by_country <- melt(
+  all_years_total,
+  id.vars=c("pais", "year")
+  ) %>%
+  rename(
+    censo = value,
+    month = variable) %>%
+  mutate(
+    month = gsub("^.*_", "", month)
+    # mutate(x=str_split(x, "\\s") %>%  map(., as.numeric) %>% map_dbl(., sum))
+  ) %>%
+  filter(censo != "-") %>%
+  filter(!(pais %in% c("TOTAL", "TOTAL GENERAL", "Total general")))
+
+```
+
+Transform data into a long format.
+
+```{r}
+
+library(reshape2)
+library(stringi)
+
+total_by_country <- melt(
+  all_years_total,
+  id.vars=c("pais", "year")
+  ) %>%
+  rename(
+    censo = value,
+    month = variable) %>%
+  mutate(
+    month = gsub("^.*_", "", month),
+    pais = toupper(stri_trans_general(pais, "LATIN-ASCII"))
+    # mutate(x=str_split(x, "\\s") %>%  map(., as.numeric) %>% map_dbl(., sum))
+  ) %>%
+  filter(censo != "-") %>%
+  filter(!(pais %in% c("TOTAL", "TOTAL GENERAL", "Total general")))
+
+total <- melt(
+  all_years_total,
+  id.vars=c("pais", "year")
+  ) %>%
+  rename(
+    censo = value,
+    month = variable) %>%
+  mutate(
+    month = gsub("^.*_", "", month),
+    pais = toupper(stri_trans_general(pais, "LATIN-ASCII"))
+    # mutate(x=str_split(x, "\\s") %>%  map(., as.numeric) %>% map_dbl(., sum))
+  ) %>%
+  filter(censo != "-") %>%
+  filter(pais %in% c("TOTAL", "TOTAL GENERAL", "Total general")) %>%
+  mutate(pais = "Total")
+```
+
+Export 
+
+```{r}
+
+write.csv(
+  total,
+  "../data/output/total_by_year.csv",
+  row.names=FALSE
+  )
+
+
+write.csv(
+  total_by_country,
+  "../data/output/total_by_country.csv",
+  row.names=FALSE
+  )
 
 ```

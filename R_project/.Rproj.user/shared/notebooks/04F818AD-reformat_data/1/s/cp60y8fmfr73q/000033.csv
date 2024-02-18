@@ -1,9 +1,0 @@
-"0","year_23 <- clean_2021(paisconsu_23, 2023)
-"
-"1","[1m[33mError[39m in `rename()`:[22m
-[33m![39m Can't rename columns that don't exist.
-[31mx[39m Column `Censo cerrado a 1-dic-2023` doesn't exist.
-Backtrace:
-[90m  1. [39m[1mglobal[22m clean_2021(paisconsu_23, 2023)
-[90m 12. [39m[1m[94mdplyr:::rename.data.frame([39m[22m...[1m[94m)[39m[22m
-"

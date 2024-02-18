@@ -25,7 +25,7 @@ consulado_id,Consulado general,Latitud,Longitud,Direccion,Jurisdiccion,Condado
 308,Houston,29.74850134,-95.47995775,"1800 Bering Drive, Suite 750. Houston, TX 77057",New Mexico,
 308,Houston,29.74850134,-95.47995775,"1800 Bering Drive, Suite 750. Houston, TX 77057",Oklahoma,
 308,Houston,29.74850134,-95.47995775,"1800 Bering Drive, Suite 750. Houston, TX 77057",Texas,
-310,Los Angeles,34.06263902,-118.3403237,"5055 Wilshire Blvd., Suite 860. Los Angeles, CA 90036",California,"Imperial, Kern, Los Angeles, Orange, Riverside, Bernardino, San Diego, San Luis Obispo, Barbara, Ventura"
+310,Los Angeles,34.06263902,-118.3403237,"5055 Wilshire Blvd., Suite 860. Los Angeles, CA 90036",California,"Imperial, Inyo, Kern, Los Angeles, Orange, Riverside, San Bernardino, San Diego, San Luis Obispo, Santa Barbara, Ventura"
 310,Los Angeles,34.06263902,-118.3403237,"5055 Wilshire Blvd., Suite 860. Los Angeles, CA 90036",Arizona,
 310,Los Angeles,34.06263902,-118.3403237,"5055 Wilshire Blvd., Suite 860. Los Angeles, CA 90036",Colorado,
 310,Los Angeles,34.06263902,-118.3403237,"5055 Wilshire Blvd., Suite 860. Los Angeles, CA 90036",Utah,
@@ -55,4 +55,4 @@ consulado_id,Consulado general,Latitud,Longitud,Direccion,Jurisdiccion,Condado
 320,Puerto Rico,18.43260056,-66.05944743,"Edificio Mercantil Plaza, Piso 11 Oficina 1101 Avenida Ponce de Le�n s/n. Hato Rey - Puerto Rico 00918",Puerto Rico,
 320,Puerto Rico,18.43260056,-66.05944743,"Edificio Mercantil Plaza, Piso 11 Oficina 1101 Avenida Ponce de Le�n s/n. Hato Rey - Puerto Rico 00918",Islas of�Culebra and�Vieques,
 320,Puerto Rico,18.43260056,-66.05944743,"Edificio Mercantil Plaza, Piso 11 Oficina 1101 Avenida Ponce de Le�n s/n. Hato Rey - Puerto Rico 00918",Islas V�rgenes,
-314,Nueva Orleans,29.990126992049003,-90.09986663042287,,,
+314,Nueva Orleans,29.99012699,-90.09986663,,,
