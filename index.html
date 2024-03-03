@@ -8,7 +8,9 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=yes"
     />
+    <!-- bootstrap -->
     <link rel="stylesheet" href="libraries/bootstrap/bootstrap.min.css" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -19,6 +21,7 @@
     <link href="app/map/map.css" rel="stylesheet" />
     <link href="app/lineChart/lineChart.css" rel="stylesheet" />
     <link href="app/controls/controls.css" rel="stylesheet" />
+    <link href="app/consulate-info/consulate-info.css" rel="stylesheet" />
   </head>
   <body>
     <header>
@@ -43,9 +46,16 @@
           <p>Jurisdiction: <span id="jurisdiction"></span></p>
         </div>
         <div class="information">
-          <div class="quote-wrapper">
-            <p class="quote">"<span id="quote"></span>"</p>
-            <p id="author"></p>
+          <!-- start of carousel -->
+          <div
+            id="carouselQuotes"
+            class="quote-wrapper carousel slide"
+            data-ride="carousel"
+          >
+            <!-- quotes -->
+            <div class="carousel-inner"></div>
+            <!-- ol = number of quotes -->
+            <div class="carousel-indicators"></div>
           </div>
           <div class="data">
             <h2>
@@ -73,6 +83,13 @@
     <div id="changeByTimeUSSpain" class="row"></div>
     <div id="changeByTime" class="row"></div> -->
     <footer></footer>
+
+    <!-- bootstrap -->
+    <script
+      src="libraries/bootstrap/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
 
     <script src="libraries/d3/d3.v7.min.js"></script>
     <script src="libraries/d3/d3-geo.v1.min.js"></script>

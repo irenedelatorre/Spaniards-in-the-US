@@ -17,7 +17,7 @@ class Dropdown {
   createDropdown() {
     this.select
       .selectAll("option")
-      .data(this.data)
+      .data(this.data.filter((d) => d !== "New Orleans"))
       .join("option")
       .html((d) => d)
       .attr("value", (d) => d);

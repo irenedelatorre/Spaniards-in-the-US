@@ -12,12 +12,16 @@ Promise.all([
 
   // us citizens in Spain
   d3.csv("./assets/data/us_citizens_in_spain.csv", parse.us_citizens),
+
+  // quotes
+  d3.csv("./assets/data/quotes.csv", parse.quotes),
 ]).then(function (files) {
   const consulates_es = files[0].sort((a, b) => b.census - a.census);
   const consulates_es_info = files[1];
   const us = files[2];
   const consulates_us_total = files[3].sort((a, b) => a.date - b.date);
   const us_citizens = files[4].sort((a, b) => a.date - b.date);
+  const quotes = files[5];
 
   // add lonlat from consulates_es_info to consulates
   parse.addLonLat(consulates_es, consulates_es_info);
@@ -80,6 +84,7 @@ Promise.all([
     data: {
       totalConsulates: consulates_es.filter((d) => d.date >= dateExtent[1]),
       infoConsulates: consulatesGroup,
+      quotes: quotes,
     },
     id_number: "number",
     id_consulate: "consulate",
