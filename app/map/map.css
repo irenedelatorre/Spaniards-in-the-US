@@ -1,41 +1,44 @@
-
 #map {
-    width: 100%;
-    /* min-height: 500px; */
-    height: 70vh;
-    margin-bottom: 5em;
+  width: 100%;
+  /* min-height: 500px; */
+  height: 70vh;
+  margin-bottom: 5em;
 }
 
 .map .nation {
-    fill: none;
-    stroke: var(--text);
+  fill: var(--green-700);
+  stroke: var(--white);
+  opacity: 0.1;
+  stroke-width: 0.5rem;
+  stroke-linejoin: round;
+  paint-order: stroke;
 }
 
 .map .jurisdiction.sort-1 path {
-    fill: none;
-    fill: lightgrey;
+  fill: none;
+  fill: lightgrey;
 }
 
 .map .jurisdiction.sort-4 path {
-    fill: none;
-    stroke: var(--text);
-    stroke-width: 1px;
+  fill: none;
+  stroke: var(--text);
+  stroke-width: 1px;
 }
 
 .map .states {
-    fill: none;
-    stroke: grey;
-    stroke-width: 0.5px;
+  fill: none;
+  stroke: grey;
+  stroke-width: 1px;
+  stroke: var(--green-300);
 }
 
-
 .map .counties {
-    fill: none;
-    stroke: grey;
-    stroke-width: 0.5px;
+  fill: none;
+  stroke: var(--green-grey);
+  stroke-width: 0.5px;
 }
 
 .lines path {
-    stroke: var(--text);
-    fill: none;
+  stroke: var(--text);
+  fill: none;
 }

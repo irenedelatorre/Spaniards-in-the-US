@@ -12,7 +12,6 @@ class mapConsulates {
     this.createSVG();
     this.drawUS();
     this.drawLines();
-    this.drawBubbles();
   }
 
   init() {
@@ -135,7 +134,7 @@ class mapConsulates {
     console.log("mapping", this.map.objects);
     this.mapLevel = this.plotMap
       .selectAll("g")
-      .data(["nation", "jurisdiction", "counties", "states", "jurisdiction"])
+      .data(["nation", "counties", "states"]) //"jurisdiction", "counties", "states", "jurisdiction"
       .join("g")
       .attr("class", (d, i) => `${d} sort-${i}`);
 
