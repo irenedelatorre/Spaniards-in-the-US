@@ -16,7 +16,7 @@
   font-size: 1.125rem;
   font-weight: 400;
   line-height: 1.7em;
-    margin-bottom: 0.4em;
+  margin-bottom: 0.4em;
 }
 
 .quote-wrapper p {
@@ -24,7 +24,6 @@
   text-wrap: balance;
 }
 
-}
 .carousel-indicators {
   position: relative;
   margin: 0;
