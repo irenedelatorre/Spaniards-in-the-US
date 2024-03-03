@@ -1,46 +1,56 @@
-
 :root {
-    --axis-lines: var(--grey-soft);
-    --axis-text: var(--black)
+  --axis-lines: #485e5c;
+  --axis-text: #95ada9;
 }
 
-
-
+.data {
+  width: 100%;
+}
+#plotConsulate {
+  width: 100%;
+}
 /* axis */
 
 .plot h3 {
-    position: absolute;
-    top: 90px;
-    left: 128px;
+  position: absolute;
+  top: 90px;
+  left: 128px;
 }
 
 .axis-y .tick line {
-    stroke-width: 1px;
-    stroke: var(--axis-lines);
+  stroke-dasharray: 2px 4px;
+}
+
+.axis .tick line,
+.axis .domain {
+  stroke-width: 1px;
+  stroke: var(--axis-lines);
 }
 
 .axis .tick text {
-    color: var(--black);
-    font-family: var(--font-sans);
-    font-size: 24px;
-    font-weight: 400;
+  color: var(--axis-text);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 400;
 }
 
 /* lines */
 .bkg-line {
-    stroke-width: 3px;
-    stroke: var(--lime-green);
-    fill: none;
+  stroke-width: 1px;
+  stroke: var(--green-500);
+  fill: none;
 }
 
 .highlighted-line path {
-    stroke-width: 6px;
-    stroke: var(--green);
-    fill: none;
+  stroke-width: 3px;
+  stroke: var(--yellow);
+  fill: none;
+  filter: drop-shadow(0px 3px 2px var(--green-700))
+    drop-shadow(0px -3px 2px var(--green-700));
 }
 
 .highlighted-line circle {
-    stroke-width: 6px;
-    stroke: var(--green);
-    fill: white;
+  stroke-width: 3px;
+  stroke: var(--yellow);
+  fill: var(--green-700);
 }

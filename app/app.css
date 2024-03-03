@@ -1,14 +1,13 @@
 /* Main */
 :root {
-  --black: #0c0c0e;
+  --black: #002925;
   --white: #f2f2f2;
   --grey-soft: #b6b6b7;
-  --green-700: #003732;
-  --green-500: #02685a;
-  --green-300: #95c2bf;
-  --lime-green: #9dd89c;
-  --yellow: #ffd914;
-  --background-color: #f2f2f2;
+  --green-700: #003732; /* background */
+  --green-500: #24897a; /* unselected lines */
+  --green-300: #95c2bf; /* body */
+  --lime-green: #a7e9a6; /* people */
+  --yellow: #ffd914; /* highlight */
   --font-serif: "Big Caslon CC", "Libre Caslon Text", "DM Serif Text", serif;
   --font-sans: "DM Sans", sans-serif;
 }
@@ -57,33 +56,6 @@ header {
 .header {
   height: 58%;
   width: 100%;
-}
-
-/* Small Multiples */
-#changeByTime,
-#changeByTimeTotal,
-#changeByTimeUSSpain {
-  /* max-width: 1700px; */
-  align-items: flex-start;
-  align-content: flex-start;
-  gap: 80px;
-  flex-wrap: wrap;
-  margin: 0 auto;
-  justify-content: center;
-}
-
-#changeByTime .plot,
-#changeByTimeTotal .plot,
-#changeByTimeUSSpain .plot {
-  width: 18%;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  border: 1px solid black;
-  padding: 0;
-  /* remove when web */
-  position: relative;
 }
 
 /* visuals (info by consulate) */

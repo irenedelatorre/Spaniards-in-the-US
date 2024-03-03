@@ -29,9 +29,9 @@ class lineChart {
   init() {
     this.margin = {
       t: 15,
-      l: 100,
-      r: 30,
-      b: 60,
+      l: 70,
+      r: 50,
+      b: 65,
     };
 
     this.width =
@@ -40,8 +40,6 @@ class lineChart {
       this.margin.l;
 
     this.height = this.heightCSS - this.margin.t - this.margin.b;
-
-    console.log(this.height);
 
     this.scale_y = d3
       .scaleLinear()
@@ -53,10 +51,11 @@ class lineChart {
       .domain(this.dateExtent)
       .range([0, this.width]);
 
+    console.log(this.dateExtent, this.yExtent, this.width, this.height);
     this.line = d3
       .line()
-      .x((d) => d.date)
-      .y((d) => d.census);
+      .x((d) => this.scale_x(d.date))
+      .y((d) => this.scale_y(d.census));
   }
 
   createSVG() {
@@ -96,39 +95,45 @@ class lineChart {
   add_axis() {
     const axis_x = d3
       .axisBottom(this.scale_x)
-      .tickPadding(4)
+      .tickPadding(8)
       .tickValues([
         this.dateExtent[0],
-        new Date("1-1-2004"),
-        new Date("1-1-2005"),
-        new Date("1-1-2006"),
-        new Date("1-1-2007"),
-        new Date("1-1-2008"),
-        new Date("1-1-2009"),
+        // new Date("1-1-2004"),
+        // new Date("1-1-2005"),
+        // new Date("1-1-2006"),
+        // new Date("1-1-2007"),
+        // new Date("1-1-2008"),
+        // new Date("1-1-2009"),
         new Date("1-1-2010"),
-        new Date("1-1-2011"),
-        new Date("1-1-2012"),
-        new Date("1-1-2013"),
-        new Date("1-1-2014"),
-        new Date("1-1-2015"),
-        new Date("1-1-2016"),
-        new Date("1-1-2017"),
-        new Date("1-1-2018"),
-        new Date("1-1-2019"),
+        // new Date("1-1-2011"),
+        // new Date("1-1-2012"),
+        // new Date("1-1-2013"),
+        // new Date("1-1-2014"),
+        // new Date("1-1-2015"),
+        // new Date("1-1-2016"),
+        // new Date("1-1-2017"),
+        // new Date("1-1-2018"),
+        // new Date("1-1-2019"),
         new Date("1-1-2020"),
-        new Date("1-1-2021"),
-        new Date("1-1-2022"),
-        new Date("1-1-2023"),
+        // new Date("1-1-2021"),
+        // new Date("1-1-2022"),
+        // new Date("1-1-2023"),
         this.dateExtent[1],
       ])
-      .tickFormat(this.tickFormat);
+      .tickFormat((d) => {
+        if (d !== this.dateExtent[0] && d !== this.dateExtent[1]) {
+          return this.tickFormat(d);
+        } else {
+          return d3.timeFormat("%b %Y")(d);
+        }
+      });
 
     const axis_y = d3
       .axisLeft()
       .scale(this.scale_y)
       .tickSize(-this.width)
       .ticks(3)
-      .tickPadding(4);
+      .tickPadding(8);
 
     this.axis_x.call(axis_x);
     this.axis_y.call(axis_y);
@@ -138,6 +143,8 @@ class lineChart {
 
   build_chart() {
     this.add_axis();
+
+    console.log(this.full_data.filter((d) => d[0] !== this.consulate.id));
 
     // background data
     this.plot_chart
@@ -152,12 +159,14 @@ class lineChart {
       .append("g")
       .attr("class", "highlighted-line");
 
+    console.log(this.data);
+
     thisConsulate
       .selectAll(".main-line")
       .data([this.data[1]].sort((a, b) => a.date - b.date))
       .join("path")
       .attr("class", "line main-line")
-      .attr("d", this.line);
+      .attr("d", (d) => this.line(d));
 
     const lastDate = d3.max(this.data[1], (d) => d.date);
     const last_point = this.data[1].filter((d) => d.date === lastDate)[0];
@@ -169,6 +178,6 @@ class lineChart {
       .attr("class", "main-dot")
       .attr("cx", (d) => this.scale_x(d.date))
       .attr("cy", (d) => this.scale_y(d.census))
-      .attr("r", 24 / 2);
+      .attr("r", 6);
   }
 }
