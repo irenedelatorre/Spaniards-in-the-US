@@ -1,45 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>CERA - Españoles viviendo en Estados Unidos</title>
-    <meta name="author" content="Irene de la Torre Arenas">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
-    <link rel="stylesheet" href="libraries/bootstrap/bootstrap.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Libre+Caslon+Text&display=swap" rel="stylesheet">
-    <link href="app/app.css" rel="stylesheet"/>
-    <link href="app/map/map.css" rel="stylesheet"/>
-    <link href="app/lineChart/lineChart.css" rel="stylesheet"/>
-    <link href="app/controls/controls.css" rel="stylesheet"/>
-</head>
-<body>
+    <meta name="author" content="Irene de la Torre Arenas" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=yes"
+    />
+    <link rel="stylesheet" href="libraries/bootstrap/bootstrap.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Libre+Caslon+Text&display=swap"
+      rel="stylesheet"
+    />
+    <link href="app/app.css" rel="stylesheet" />
+    <link href="app/map/map.css" rel="stylesheet" />
+    <link href="app/lineChart/lineChart.css" rel="stylesheet" />
+    <link href="app/controls/controls.css" rel="stylesheet" />
+  </head>
+  <body>
     <header>
-        <h1>
-            Where do Spaniards live in the US?
-        </h1>
-        <p class="standfirst">
-            A snapshot of where Spaniards study, work, 
-            or form a family abroad
-        </p>
+      <h1>Where do Spaniards live in the US?</h1>
+      <p class="standfirst">
+        A snapshot of where Spaniards study, work, or form a family abroad
+      </p>
     </header>
-    <div class="container-fluid map-wrapper">
-        <div class="dropdown">
-            <label>Choose a jurisdiction</label>
-            <select id="consulates-list"
-                class="form-select" aria-label="Default"></select>
+    <div class="container-fluid graphics-wrapper">
+      <div class="dropdown">
+        <label>Choose a jurisdiction</label>
+        <select
+          id="consulates-list"
+          class="form-select"
+          aria-label="Default"
+        ></select>
+      </div>
+      <div id="map" class="row"></div>
+      <div class="row visuals-consulate">
+        <div class="consulate-map">
+          <div id="map-jurisdiction" class="row"></div>
+          <p id="jurisdiction">Jurisdiction:<span id="states"></span></p>
         </div>
-        <!-- <div class="informacion hidden">
+        <div class="information">
+          <div class="quote-wrapper">
+            <p id="quote"></p>
+            <p id="author"></p>
+          </div>
+          <div class="data">
+            <h2>
+              <span id="number"></span> Spaniards registered in
+              <span class="highlight-consulate">
+                <span id="consulate"></span>'s jurisdiction
+              </span>
+            </h2>
+            <div class="chart">
+              <p class="chart-title">
+                CERA registrations by consulate and year
+              </p>
+              <div id="plot"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="informacion hidden">
             <p id="pais"></p>
             <p id="consulado"></p>
             <p><span id="censo"></span> españoles</p>
         </div> -->
-        <div id="map" class="row"></div>
     </div>
-    <div id="changeByTimeTotal" class="row"></div>
+    <!-- <div id="changeByTimeTotal" class="row"></div>
     <div id="changeByTimeUSSpain" class="row"></div>
-    <div id="changeByTime" class="row"></div>
+    <div id="changeByTime" class="row"></div> -->
     <footer></footer>
 
     <script src="libraries/d3/d3.v7.min.js"></script>
@@ -54,5 +86,5 @@
     <script src="app/lineChart/lineChart.js"></script>
     <script src="app/lineChart/smallMultiple.js"></script>
     <script src="app/app.js"></script>
-</body>
+  </body>
 </html>
