@@ -56,7 +56,7 @@ class ConsulatesInfo {
     if (d3.select(`#${this.plot.id}`).selectAll("svg").empty()) {
       this.createChart(d);
     } else {
-      // update
+      this.updateChart(d);
     }
   }
 
@@ -103,7 +103,7 @@ class ConsulatesInfo {
 
   createChart(consulate) {
     // initialize plot
-    const dataByConsulate = new lineChart({
+    this.dataByConsulate = new lineChart({
       id: this.plot.id,
       data: this.data.byConsulate.filter(
         (d) => d[1][0].consulate.toLowerCase() === consulate.toLowerCase()
@@ -113,5 +113,12 @@ class ConsulatesInfo {
       yExtent: this.plot.yExtent,
       height: this.plot.height,
     });
+  }
+
+  updateChart(consulate) {
+    this.dataByConsulate.data = this.data.byConsulate.filter(
+      (d) => d[1][0].consulate.toLowerCase() === consulate.toLowerCase()
+    )[0];
+    this.dataByConsulate.updateChart();
   }
 }

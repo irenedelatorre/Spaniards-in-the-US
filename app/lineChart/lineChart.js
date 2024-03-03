@@ -146,8 +146,15 @@ class lineChart {
 
     console.log(this.full_data.filter((d) => d[0] !== this.consulate.id));
 
+    const gCharts = this.plot_chart
+      .selectAll("g")
+      .data(["bkg-lines", "highlighted-line"])
+      .join("g")
+      .attr("class", (d) => d);
+
     // background data
     this.plot_chart
+      .selectAll(".bkg-lines")
       .selectAll(".bkg-line")
       .data(this.full_data.filter((d) => d[0] !== this.consulate.id))
       .join("path")
@@ -155,11 +162,7 @@ class lineChart {
       .attr("d", (d) => this.line(d[1].sort((a, b) => a.date - b.date)));
 
     // this consulate
-    const thisConsulate = this.plot_chart
-      .append("g")
-      .attr("class", "highlighted-line");
-
-    console.log(this.data);
+    const thisConsulate = this.plot_chart.selectAll(".highlighted-line");
 
     thisConsulate
       .selectAll(".main-line")
@@ -170,7 +173,7 @@ class lineChart {
 
     const lastDate = d3.max(this.data[1], (d) => d.date);
     const last_point = this.data[1].filter((d) => d.date === lastDate)[0];
-    console.log(last_point);
+
     thisConsulate
       .selectAll(".main-dot")
       .data([last_point])
@@ -179,5 +182,10 @@ class lineChart {
       .attr("cx", (d) => this.scale_x(d.date))
       .attr("cy", (d) => this.scale_y(d.census))
       .attr("r", 6);
+  }
+
+  updateChart() {
+    console.log(this.data);
+    this.build_chart();
   }
 }
