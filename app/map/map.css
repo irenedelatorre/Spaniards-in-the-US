@@ -5,7 +5,7 @@
   margin-bottom: 5em;
 }
 
-.map .nation {
+.map .nation.sort-0 {
   fill: var(--green-700);
   stroke: var(--white);
   opacity: 0.1;
@@ -14,31 +14,57 @@
   paint-order: stroke;
 }
 
-.map .jurisdiction.sort-1 path {
+.map .nation.sort-4 {
   fill: none;
-  fill: lightgrey;
-}
-
-.map .jurisdiction.sort-4 path {
-  fill: none;
-  stroke: var(--text);
-  stroke-width: 1px;
+  stroke: var(--green-900);
+  opacity: 1;
+  stroke-width: 2px;
+  stroke-linejoin: round;
 }
 
 .map .states {
   fill: none;
-  stroke: grey;
   stroke-width: 1px;
   stroke: var(--green-300);
+  stroke-linejoin: round;
 }
 
 .map .counties {
   fill: none;
   stroke: var(--green-grey);
-  stroke-width: 0.5px;
+  stroke-width: 0.25px;
+  stroke-linejoin: round;
 }
 
-.lines path {
-  stroke: var(--text);
+.map .jurisdiction-polygons path {
+  fill: var(--green-700);
+  stroke: none;
+}
+
+.map .jurisdiction-borders.sort-5 path {
+  stroke: var(--green-700);
+  stroke-width: 6px;
   fill: none;
+  stroke-linejoin: round;
+  filter: blur(4px);
+}
+
+.map .jurisdiction-borders.sort-6 path {
+  stroke: var(--yellow);
+  stroke-width: 2px;
+  fill: none;
+  stroke-linejoin: round;
+}
+
+.map .consulates.sort-7 circle {
+  fill: var(--yellow);
+  stroke: var(--white);
+  stroke-width: 8px;
+  opacity: 0.6;
+}
+
+.map .consulates.sort-8 circle {
+  fill: var(--yellow);
+  stroke: var(--green-900);
+  stroke-width: 3px;
 }

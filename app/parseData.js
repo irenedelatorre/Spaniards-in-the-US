@@ -22,6 +22,13 @@ const parse = {
     };
   },
 
+  counties: function (d) {
+    return {
+      name: d.name,
+      id: +d.id_n,
+    };
+  },
+
   addLonLat: function (consulates, info) {
     consulates.forEach((d) => {
       const thisConsulate = info.filter(
