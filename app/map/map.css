@@ -14,7 +14,7 @@
   paint-order: stroke;
 }
 
-.map .nation.sort-4 {
+.map .nation.sort-5 {
   fill: none;
   stroke: var(--green-900);
   opacity: 1;
@@ -41,30 +41,36 @@
   stroke: none;
 }
 
-.map .jurisdiction-borders.sort-5 path {
+.map .jurisdiction-borders.sort-6 path {
   stroke: var(--green-700);
   stroke-width: 6px;
   fill: none;
   stroke-linejoin: round;
-  filter: blur(4px);
+  filter: blur(1px);
 }
 
-.map .jurisdiction-borders.sort-6 path {
+.map .jurisdiction-borders.sort-7 path {
   stroke: var(--yellow);
   stroke-width: 2px;
   fill: none;
   stroke-linejoin: round;
 }
 
-.map .consulates.sort-7 circle {
+.map .consulates.sort-8 circle {
   fill: var(--yellow);
   stroke: var(--white);
   stroke-width: 8px;
   opacity: 0.6;
 }
 
-.map .consulates.sort-8 circle {
+.map .consulates.sort-9 circle {
   fill: var(--yellow);
   stroke: var(--green-900);
   stroke-width: 3px;
+}
+
+.map .points circle {
+  fill: #9dd89c;
+  mix-blend-mode: screen;
+  opacity: 0.9;
 }

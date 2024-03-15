@@ -46,9 +46,9 @@ const projection = {
       hawaiiPoint,
       puertoRico = d3
         .geoConicEqualArea()
-        .rotate([66, 0])
+        .rotate([67, 0])
         .center([0, 18])
-        .parallels([8, 18]),
+        .parallels([8, 19]),
       puertoRicoPoint,
       point,
       pointStream = {

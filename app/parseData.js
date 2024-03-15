@@ -38,6 +38,13 @@ const parse = {
     });
   },
 
+  points: function (d) {
+    return {
+      consulate: d["info_consulados_Consulado general"],
+      xy: [+d.X, +d.Y],
+    };
+  },
+
   us_citizens: function (d) {
     return {
       year: +d.year,
