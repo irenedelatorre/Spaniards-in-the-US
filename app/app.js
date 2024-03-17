@@ -60,7 +60,7 @@ Promise.all([
 
   // create map with information about spanish consulates
   const us_map = new mapConsulates({
-    id: "map",
+    id: "map-nation",
     map: us,
     data: consulates_es,
     info: consulates_es_info,
@@ -115,10 +115,11 @@ Promise.all([
   // create dropdown with consulates
   const consulatesNames = consulatesGroup.map((d) => d[0]);
   consulatesNames.unshift("All consulates");
-  const map_tooltip = new Dropdown({
+  const map_dropdown = new Dropdown({
     data: consulatesNames,
     id: "consulates-list",
     consulatesInfo: consulatesInfo,
+    nation_id: "map-nation",
   });
 
   // update on windows resize

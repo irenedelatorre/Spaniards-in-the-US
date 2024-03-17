@@ -4,13 +4,20 @@ class Dropdown {
     this.id = item.id;
     this.select = d3.select(`#${this.id}`);
     this.consulatesInfo = item.consulatesInfo;
+    this.nation_id = item.nation_id;
 
     this.createDropdown();
 
     this.select.on("change", function () {
-      const thisConsulate = this.value;
-      item.consulatesInfo.updateInfo(thisConsulate);
-      // change something in the map
+      console.log(this.value);
+
+      if (this.value === "All consulates") {
+        d3.selectAll(`#${item.nation_id}`).classed("hide", false);
+      } else {
+        d3.selectAll(`#${item.nation_id}`).classed("hide", true);
+        const thisConsulate = this.value;
+        item.consulatesInfo.updateInfo(thisConsulate);
+      }
     });
   }
 

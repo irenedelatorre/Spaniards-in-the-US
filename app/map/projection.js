@@ -129,6 +129,7 @@ const projection = {
         .stream(pointStream);
 
       alaskaPoint = alaska
+        // .translate([x - 0.307 * k, y + 0.201 * k])
         .translate([x - 0.307 * k, y + 0.201 * k])
         .clipExtent([
           [

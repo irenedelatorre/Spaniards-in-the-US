@@ -54,14 +54,6 @@ class mapConsulates {
     this.californian_counties = this.getCaCounties();
 
     this.createJurisdictions();
-    // create dots
-
-    // const points = districts.features.map((geo) =>
-    //   makeDots(geo.geometry.coordinates[0].map(projection), numPoints, {
-    //     distance: distance,
-    //     edgeDistance: Math.max(3, distance),
-    //   })
-    // );
   }
 
   createSVG() {
@@ -169,7 +161,6 @@ class mapConsulates {
   }
 
   drawPoints() {
-    console.log(this.pts);
     this.plotMap
       .selectAll(".points")
       .selectAll(".point")
@@ -179,22 +170,6 @@ class mapConsulates {
       .attr("cy", (d) => this.projection(d.xy)[1])
       .attr("cx", (d) => this.projection(d.xy)[0])
       .attr("r", 1);
-
-    // let points = makeDots(
-    //   geo.geometry.coordinates[0].map(projection),
-    //   numPoints,
-    //   {
-    //     distance: distance,
-    //     edgeDistance: Math.max(3, distance),
-    //   }
-    // );
-
-    // let points = districts.features.map((geo) =>
-    //   makeDots(geo.geometry.coordinates[0].map(projection), numPoints, {
-    //     distance: distance,
-    //     edgeDistance: Math.max(3, distance),
-    //   })
-    // );
   }
 
   filterCaCounties(jur, geometry) {
