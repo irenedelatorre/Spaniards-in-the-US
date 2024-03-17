@@ -71,33 +71,33 @@ Promise.all([
     type: "nation",
   });
 
-  const change_line = new smallMultiple({
-    id: "changeByTime",
-    data: consulatesGroupsTime,
-    type: "line",
-    dateExtent: dateExtent,
-    yExtent: censusExtent,
-    height: 594,
-  });
+  // const change_line_US = new smallMultiple({
+  //   id: "changeByTimeTotal",
+  //   data: totalGroupTime,
+  //   type: "line",
+  //   dateExtent: dateExtent,
+  //   yExtent: censusTotalExtent,
+  //   height: 594,
+  // });
 
-  const change_line_US = new smallMultiple({
-    id: "changeByTimeTotal",
-    data: totalGroupTime,
-    type: "line",
-    dateExtent: dateExtent,
-    yExtent: censusTotalExtent,
-    height: 594,
-  });
+  // const change_line_US_in_Spain = new smallMultiple({
+  //   id: "changeByTimeUSSpain",
+  //   data: totalUS_inSpain,
+  //   type: "line",
+  //   dateExtent: dateExtent,
+  //   yExtent: censusExtent,
+  //   // yExtent: [0, d3.max(us_citizens, d => d.census)],
+  //   height: 594,
+  // });
 
-  const change_line_US_in_Spain = new smallMultiple({
-    id: "changeByTimeUSSpain",
-    data: totalUS_inSpain,
-    type: "line",
-    dateExtent: dateExtent,
-    yExtent: censusExtent,
-    // yExtent: [0, d3.max(us_citizens, d => d.census)],
-    height: 594,
-  });
+  // const change_line = new smallMultiple({
+  //   id: "plotConsulate",
+  //   data: consulatesGroupsTime,
+  //   type: "line",
+  //   dateExtent: dateExtent,
+  //   yExtent: censusExtent,
+  //   height: 594,
+  // });
 
   // initialize the consulatesInformation
   const consulatesInfo = new ConsulatesInfo({
@@ -105,6 +105,13 @@ Promise.all([
       totalConsulates: consulates_es.filter((d) => d.date >= dateExtent[1]),
       infoConsulates: consulatesGroup,
       quotes: quotes,
+      byConsulate: consulatesGroupsTime,
+    },
+    plot: {
+      id: "plotConsulate",
+      dateExtent: dateExtent,
+      yExtent: censusExtent,
+      height: 250,
     },
     id_number: "number",
     id_consulate: "consulate",

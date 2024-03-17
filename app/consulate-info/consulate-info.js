@@ -6,7 +6,11 @@ class ConsulatesInfo {
     this.id_quote = item.id_quote;
     this.id_author = item.id_author;
     this.id_jurisdiction = item.id_jurisdiction;
+
     this.formatNumber = d3.format(",");
+
+    // plot
+    this.plot = item.plot;
 
     // select ids
     this.select_id_number = d3.select(`#${this.id_number}`);
@@ -28,13 +32,6 @@ class ConsulatesInfo {
       .join(", ");
 
     const quotes = this.data.quotes.filter((e) => e.consulate === d);
-    console.log(
-      d,
-      this.consulate,
-      this.data,
-      "Puerto Rico".toLowerCase(),
-      d.toLowerCase()
-    );
 
     // consulate info - right side
     this.select_id_consulate.html(d);
@@ -53,6 +50,14 @@ class ConsulatesInfo {
         "Alaska, Northern California, Hawaii, Idaho, Montana, Nevada, Oregon, Washington, Wyoming, US Pacific";
     }
     this.select_id_jurisdiction.html(jurisInfo);
+
+    // plot
+
+    if (d3.select(`#${this.plot.id}`).selectAll("svg").empty()) {
+      this.createChart(d);
+    } else {
+      this.updateChart(d);
+    }
   }
 
   createQuotes(quotes) {
@@ -94,5 +99,26 @@ class ConsulatesInfo {
       .join("p")
       .attr("class", "author")
       .html((d) => d.author);
+  }
+
+  createChart(consulate) {
+    // initialize plot
+    this.dataByConsulate = new lineChart({
+      id: this.plot.id,
+      data: this.data.byConsulate.filter(
+        (d) => d[1][0].consulate.toLowerCase() === consulate.toLowerCase()
+      )[0],
+      full_data: this.data.byConsulate,
+      dateExtent: this.plot.dateExtent,
+      yExtent: this.plot.yExtent,
+      height: this.plot.height,
+    });
+  }
+
+  updateChart(consulate) {
+    this.dataByConsulate.data = this.data.byConsulate.filter(
+      (d) => d[1][0].consulate.toLowerCase() === consulate.toLowerCase()
+    )[0];
+    this.dataByConsulate.updateChart();
   }
 }
