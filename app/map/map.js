@@ -248,14 +248,14 @@ class mapConsulates {
   drawPoints() {
     let transitions = 0;
 
+    const these_points =
+      this.type === "nation"
+        ? this.pts
+        : this.pts.filter((d) => d.consulate === this.consulate);
     this.plotMap
       .selectAll(".points")
       .selectAll(".point")
-      .data(
-        this.type === "nation"
-          ? this.pts
-          : this.pts.filter((d) => d.consulate === this.consulate)
-      )
+      .data(these_points)
       .join("circle")
       .attr("class", "point")
       .attr("cy", (d) => this.projection(d.xy)[1])
@@ -268,7 +268,7 @@ class mapConsulates {
       .style("opacity", 1)
       .on("end", (d) => {
         transitions++;
-        if (transitions === this.pts.length) {
+        if (transitions === these_points.length) {
           d3.selectAll(".point").classed("shine", true);
         }
       });
