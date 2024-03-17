@@ -135,6 +135,7 @@ Promise.all([
     consulatesInfo: consulatesInfo,
     map: jur_map,
     nation_id: "map-nation",
+    info_id: "visuals-consulate",
   });
 
   // update on windows resize

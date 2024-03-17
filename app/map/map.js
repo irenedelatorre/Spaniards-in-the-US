@@ -11,11 +11,11 @@ class mapConsulates {
     this.pts = item.pts;
     this.selectPlot = d3.select(`#${this.id}`);
     this.year = d3.max(this.data, (d) => d.year);
-    this.consulate = "";
+    this.consulate = "All";
 
     this.init();
-    this.createSVG();
     if (this.type === "nation") {
+      this.createSVG();
       this.drawUS();
     }
   }
@@ -372,6 +372,7 @@ class mapConsulates {
   updateThisMap(value) {
     this.consulate = value;
     this.init();
+    this.createSVG();
     this.drawUS();
   }
 }
