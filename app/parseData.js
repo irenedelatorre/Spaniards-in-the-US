@@ -40,7 +40,7 @@ const parse = {
 
   points: function (d) {
     return {
-      consulate: d["info_consulados_Consulado general"],
+      consulate: parse.change_es_to_en(d["info_consulados_Consulado general"]),
       xy: [+d.X, +d.Y],
     };
   },
