@@ -120,6 +120,19 @@ Promise.all([
     id_jurisdiction: "jurisdiction",
   });
 
+  // create map only for one state at a time
+  const jur_map = new mapConsulates({
+    id: "map-jurisdiction",
+    map: us,
+    data: consulates_es,
+    info: consulates_es_info,
+    groups: consulatesGroup,
+    ca_counties: ca_counties,
+    consulate_borders: consulate_borders,
+    pts: points,
+    type: "jurisdiction",
+  });
+
   // create dropdown with consulates
   const consulatesNames = consulatesGroup.map((d) => d[0]);
   consulatesNames.unshift("All consulates");
@@ -127,7 +140,10 @@ Promise.all([
     data: consulatesNames,
     id: "consulates-list",
     consulatesInfo: consulatesInfo,
+    nation_map: us_map,
+    jur_map: jur_map,
     nation_id: "map-nation",
+    info_id: "visuals-consulate",
   });
 
   // update on windows resize

@@ -85,10 +85,36 @@ header {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  margin-top: 1.5em;
   gap: 1.5rem;
   width: calc(50% - 0.75rem);
 }
 
+.information p {
+  margin-bottom: 0;
+}
+
 .hide {
   display: none;
+}
+
+.legend-container {
+  justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1em;
+}
+
+.legend {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2px;
+  width: auto;
+  margin-bottom: 0;
+}
+
+.legend .dot {
+  font-size: 0.5em;
 }
