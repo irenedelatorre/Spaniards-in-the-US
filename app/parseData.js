@@ -22,6 +22,13 @@ const parse = {
     };
   },
 
+  counties: function (d) {
+    return {
+      name: d.name,
+      id: +d.id_n,
+    };
+  },
+
   addLonLat: function (consulates, info) {
     consulates.forEach((d) => {
       const thisConsulate = info.filter(
@@ -29,6 +36,13 @@ const parse = {
       );
       d.lonlat = thisConsulate[0].lonlat;
     });
+  },
+
+  points: function (d) {
+    return {
+      consulate: d["info_consulados_Consulado general"],
+      xy: [+d.X, +d.Y],
+    };
   },
 
   us_citizens: function (d) {

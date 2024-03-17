@@ -3,6 +3,8 @@
   --black: #0c0c0e;
   --white: #f2f2f2;
   --grey-soft: #b6b6b7;
+  --green-grey: #95ada9;
+  --green-900: #002925;
   --green-700: #003732;
   --green-500: #02685a;
   --green-300: #95c2bf;
@@ -114,4 +116,8 @@ header {
   align-items: flex-start;
   gap: 1.5rem;
   width: calc(50% - 0.75rem);
+}
+
+.hide {
+  display: none;
 }

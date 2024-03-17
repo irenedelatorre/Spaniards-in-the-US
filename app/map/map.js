@@ -4,15 +4,17 @@ class mapConsulates {
     this.map = item.map;
     this.data = item.data;
     this.info = item.info;
-    this.groups = item.groups;
+    this.groups = item.groups.filter((d) => d[0] !== "New Orleans");
+    this.ca_counties = item.ca_counties;
+    this.consulate_borders = item.consulate_borders;
+    this.type = item.type;
+    this.pts = item.pts;
     this.selectPlot = d3.select(`#${this.id}`);
     this.year = d3.max(this.data, (d) => d.year);
 
     this.init();
     this.createSVG();
     this.drawUS();
-    this.drawLines();
-    this.drawBubbles();
   }
 
   init() {
@@ -34,6 +36,14 @@ class mapConsulates {
       .scale(1200)
       .translate([this.width / 2, this.height / 2]);
 
+    this.projectionPR = d3
+      .geoConicEqualArea()
+      .rotate([66, 0])
+      .center([0, 18])
+      .scale(1200)
+      .translate([this.width / 2, this.height / 2])
+      .parallels([8, 18]);
+
     // function to draw the map
     this.path = d3.geoPath().projection(this.projection);
 
@@ -41,6 +51,38 @@ class mapConsulates {
       .scaleSqrt()
       .domain(d3.extent(this.data, (d) => d.census))
       .range([10, 50]);
+
+    this.californian_counties = this.getCaCounties();
+
+    this.createJurisdictions();
+
+    if (this.type === "nation") {
+      this.layers = [
+        "nation",
+        "jurisdiction-polygons",
+        "points",
+        "counties",
+        "states",
+        "nation",
+        "jurisdiction-borders",
+        "jurisdiction-borders",
+        "consulates",
+        "consulates",
+      ];
+    } else {
+      this.layers = [
+        "states",
+        "jurisdiction-polygons",
+        "points",
+        "counties",
+        "states",
+        "nation",
+        "jurisdiction-borders",
+        "jurisdiction-borders",
+        "consulates",
+        "consulates",
+      ];
+    }
   }
 
   createSVG() {
@@ -78,84 +120,23 @@ class mapConsulates {
     );
   }
 
-  drawLines() {
-    this.plotLines
-      .selectAll(".jurisdiction")
-      .data(topojson.feature(this.map, this.map.objects.states).features)
-      .join("path")
-      .attr("class", (d) => `jurisdiction ${d.properties.name}`)
-      .attr("d", (d) => {
-        // console.log(d)
-        // console.log(this.path.centroid(d));
-        const start = this.path.centroid(d);
-
-        // find consulate
-        const consulate = this.info.filter(
-          (e) => d.properties.name === e.jurisdiction
-        );
-
-        // ignore Puerto Rico for a bit
-        if (consulate.length > 0 && consulate[0].consulate_id !== 320) {
-          const end = this.projection(consulate[0].lonlat);
-          const dx = end[0] - start[0];
-          const dy = end[1] - start[1];
-          const dr = Math.sqrt(dx * dx + dy * dy);
-          // ignore Puerto Rico for a bit
-          return `M${start[0]},${start[1]}A${dr},${dr} 0 0,1 ${end[0]},${end[1]}`;
-        }
-        // console.log(consulate, this.info, d.properties.name)
-
-        // const end_x = d.target.x;
-        // const end_y = d.target.y;
-        // const dx = end_x - d.source.x;
-        // const dy = end_y - d.source.y;
-        // const dr = Math.sqrt(dx * dx + dy * dy);
-        // return `M${d.source.x},${d.source.y}A${dr},${dr} 0 0,1 ${end_x},${end_y}`;
-      });
-  }
-
-  drawBubbles() {
-    this.plotBubbles
-      .selectAll(".consulado")
-      .data(this.data.filter((d) => d.year === this.year))
-      .join("circle")
-      .attr("class", (d) => `consulado ${d.consulate}`)
-      .attr("cx", (d) => {
-        // ignore Puerto Rico for a bit
-        return d.consulate_id !== 320 ? this.projection(d.lonlat)[0] : "";
-      })
-      .attr("cy", (d) => {
-        // ignore Puerto Rico for a bit
-        return d.consulate_id !== 320 ? this.projection(d.lonlat)[1] : "";
-      })
-      .attr("r", (d) => this.scaleR(d.census));
-  }
-
   drawUS() {
-    console.log("mapping", this.map.objects);
     this.mapLevel = this.plotMap
       .selectAll("g")
-      .data(["nation", "jurisdiction", "counties", "states", "jurisdiction"])
+      .data(this.layers)
       .join("g")
       .attr("class", (d, i) => `${d} sort-${i}`);
 
     this.land = this.mapLevel
       .selectAll(".land")
       .data((d) => {
-        let geo = this.map.objects[d];
+        let geo =
+          d === "counties" ? this.californian_counties : this.map.objects[d];
 
-        if (d === "counties") {
-          const drawCounties = this.info
-            .map((d) => d.county)
-            .filter((d) => d !== "");
-          const countyNames = drawCounties[0].split(", ");
-          const counties = this.map.objects.counties.geometries.filter((e) =>
-            countyNames.includes(e.properties.name)
-          );
-
-          geo = { type: "GeometryCollection", geometries: counties };
-        }
-        return d !== "jurisdiction"
+        return d !== "jurisdiction-polygons" &&
+          d !== "jurisdiction-borders" &&
+          d !== "consulates" &&
+          d !== "points"
           ? topojson.feature(this.map, geo).features
           : "";
       })
@@ -163,26 +144,135 @@ class mapConsulates {
       .attr("class", (d) => `land ${d.properties.name}`)
       .attr("d", this.path);
 
+    // polygon
     this.jurisdiction = this.plotMap
-      .selectAll(".jurisdiction")
+      .selectAll(".jurisdiction-polygons")
       .selectAll(".land")
       .data(this.groups)
       .join("path")
-      .attr("class", (d) => `land jurisdiction-${d[0]}`)
-      .attr("d", (d) => {
-        const map = this.map.objects.states;
-        const states = d[1].map((e) => e.jurisdiction);
-        const geo = map.geometries.filter((e) =>
-          states.includes(e.properties.name)
-        );
-        const jurisdiction = {
-          type: "GeometryCollection",
-          geometries: geo,
-        };
-        return geo.length > 0
-          ? this.path(topojson.merge(this.map, jurisdiction.geometries))
-          : "";
+      .attr("class", (d) => `land jurisdiction-polygon jur-${d[0]}`)
+      .attr("stroke", "white")
+      .attr("d", (d) => this.path(this.drawJurisdiction(d[0])));
+
+    // borders
+    this.jurisdiction = this.plotMap
+      .selectAll(".jurisdiction-borders")
+      .selectAll(".land")
+      .data(this.consulate_borders.objects.collection.geometries)
+      .join("path")
+      .attr("class", (d) => `land jurisdiction-border`)
+      .attr("stroke", "white")
+      .attr("d", (d) => this.path(topojson.feature(this.consulate_borders, d)));
+
+    this.plotMap
+      .selectAll(".consulates")
+      .selectAll(".consulate")
+      .data(this.groups)
+      .join("circle")
+      .attr("class", (d) => `consulate ${d[0]}`)
+      .attr("cx", (d) => this.projection(d[1][0].lonlat)[0])
+      .attr("cy", (d) => this.projection(d[1][0].lonlat)[1])
+      .attr("r", 4);
+
+    this.drawPoints();
+  }
+
+  drawPoints() {
+    let transitions = 0;
+
+    this.plotMap
+      .selectAll(".points")
+      .selectAll(".point")
+      .data(this.pts)
+      .join("circle")
+      .attr("class", "point")
+      .attr("cy", (d) => this.projection(d.xy)[1])
+      .attr("cx", (d) => this.projection(d.xy)[0])
+      .attr("r", 1)
+      .style("opacity", 0)
+      .transition()
+      .duration(500)
+      .delay((d, i) => i * Math.random())
+      .style("opacity", 1)
+      .on("end", (d) => {
+        transitions++;
+        if (transitions === this.pts.length) {
+          d3.selectAll(".point").classed("shine", true);
+        }
       });
-    // .
+  }
+
+  filterCaCounties(jur, geometry) {
+    const laCountiesIDs = [
+      6027, 6071, 6025, 6065, 6073, 6059, 6037, 6029, 6111, 6083, 6079,
+    ];
+
+    const counties =
+      jur === "Los Angeles"
+        ? this.californian_counties.geometries.filter((d) =>
+            laCountiesIDs.includes(+d.id)
+          )
+        : this.californian_counties.geometries.filter(
+            (d) => !laCountiesIDs.includes(+d.id)
+          );
+
+    const new_jur = { type: "GeometryCollection", geometries: [] };
+
+    // loop across geometry and create a new array with all states minus CA
+    geometry.geometries.forEach((d) => {
+      if (d.properties.name !== "California") {
+        new_jur.geometries.push(d);
+      }
+    });
+
+    counties.forEach((d) => {
+      new_jur.geometries.push(d);
+    });
+
+    return new_jur;
+  }
+
+  getCaCounties() {
+    const countyNames = this.ca_counties.map((d) => d.id);
+    const counties = this.map.objects.counties.geometries.filter((e) =>
+      countyNames.includes(+e.id)
+    );
+
+    return { type: "GeometryCollection", geometries: counties };
+  }
+
+  createJurisdictions() {
+    this.jurisdictions = {
+      type: "GeometryCollection",
+      geometries: [],
+    };
+    this.groups.forEach((d) => {
+      const map = this.map.objects.states;
+      const states = d[1].map((e) => e.jurisdiction);
+      let geo = map.geometries.filter((e) =>
+        states.includes(e.properties.name)
+      );
+      let jurisdiction = {
+        type: "GeometryCollection",
+        geometries: geo,
+      };
+
+      if (d[0] === "Los Angeles" || d[0] === "San Francisco") {
+        jurisdiction = this.filterCaCounties(d[0], jurisdiction);
+        geo = jurisdiction.geometries;
+      }
+
+      geo.consulate = d[0];
+
+      this.jurisdictions.geometries.push(geo);
+    });
+  }
+
+  drawJurisdiction(consulate) {
+    const geo = this.jurisdictions.geometries.filter(
+      (e) => e.consulate === consulate
+    )[0];
+
+    return geo.length > 0 ? topojson.merge(this.map, geo) : "no data";
   }
 }

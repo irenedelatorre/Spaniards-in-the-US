@@ -6,6 +6,12 @@ Promise.all([
 
   // map from https://observablehq.com/@d3/u-s-map
   d3.json("./assets/map/counties-albers-10m.json"),
+  // jurisdiction lines
+  d3.json("./assets/map/consulate_jurisdictions_borders.json"),
+  // jurisdiction polygons
+  d3.json("./assets/map/consulate_jurisdictions.json"),
+  // californian counties
+  d3.csv("./assets/map/californian_counties.csv", parse.counties),
 
   // total us
   d3.csv("./assets/data/cera_total_us.csv", parse.cera_consulates),
@@ -15,13 +21,23 @@ Promise.all([
 
   // quotes
   d3.csv("./assets/data/quotes.csv", parse.quotes),
+
+  // points
+  d3.csv("./assets/map/density_pt_by_10.csv", parse.points),
 ]).then(function (files) {
   const consulates_es = files[0].sort((a, b) => b.census - a.census);
   const consulates_es_info = files[1];
+
+  // map
   const us = files[2];
-  const consulates_us_total = files[3].sort((a, b) => a.date - b.date);
-  const us_citizens = files[4].sort((a, b) => a.date - b.date);
-  const quotes = files[5];
+  const consulate_borders = files[3];
+  const consulate_jurisdiction = files[4];
+  const ca_counties = files[5];
+  const points = files[9];
+
+  const consulates_us_total = files[6].sort((a, b) => a.date - b.date);
+  const us_citizens = files[7].sort((a, b) => a.date - b.date);
+  const quotes = files[8];
 
   // add lonlat from consulates_es_info to consulates
   parse.addLonLat(consulates_es, consulates_es_info);
@@ -44,11 +60,15 @@ Promise.all([
 
   // create map with information about spanish consulates
   const us_map = new mapConsulates({
-    id: "map",
+    id: "map-nation",
     map: us,
     data: consulates_es,
     info: consulates_es_info,
     groups: consulatesGroup,
+    ca_counties: ca_counties,
+    consulate_borders: consulate_borders,
+    pts: points,
+    type: "nation",
   });
 
   const change_line = new smallMultiple({
@@ -96,10 +116,11 @@ Promise.all([
   // create dropdown with consulates
   const consulatesNames = consulatesGroup.map((d) => d[0]);
   consulatesNames.unshift("All consulates");
-  const map_tooltip = new Dropdown({
+  const map_dropdown = new Dropdown({
     data: consulatesNames,
     id: "consulates-list",
     consulatesInfo: consulatesInfo,
+    nation_id: "map-nation",
   });
 
   // update on windows resize
