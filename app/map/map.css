@@ -72,6 +72,10 @@
 
 .map .points circle {
   fill: #9dd89c;
-  mix-blend-mode: screen;
+  /* mix-blend-mode: screen; */
   opacity: 0.9;
+}
+
+.shine {
+  mix-blend-mode: screen;
 }

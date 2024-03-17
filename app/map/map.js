@@ -7,6 +7,7 @@ class mapConsulates {
     this.groups = item.groups.filter((d) => d[0] !== "New Orleans");
     this.ca_counties = item.ca_counties;
     this.consulate_borders = item.consulate_borders;
+    this.type = item.type;
     this.pts = item.pts;
     this.selectPlot = d3.select(`#${this.id}`);
     this.year = d3.max(this.data, (d) => d.year);
@@ -54,6 +55,34 @@ class mapConsulates {
     this.californian_counties = this.getCaCounties();
 
     this.createJurisdictions();
+
+    if (this.type === "nation") {
+      this.layers = [
+        "nation",
+        "jurisdiction-polygons",
+        "points",
+        "counties",
+        "states",
+        "nation",
+        "jurisdiction-borders",
+        "jurisdiction-borders",
+        "consulates",
+        "consulates",
+      ];
+    } else {
+      this.layers = [
+        "states",
+        "jurisdiction-polygons",
+        "points",
+        "counties",
+        "states",
+        "nation",
+        "jurisdiction-borders",
+        "jurisdiction-borders",
+        "consulates",
+        "consulates",
+      ];
+    }
   }
 
   createSVG() {
@@ -92,21 +121,9 @@ class mapConsulates {
   }
 
   drawUS() {
-    let layers = [
-      "nation",
-      "jurisdiction-polygons",
-      "points",
-      "counties",
-      "states",
-      "nation",
-      "jurisdiction-borders",
-      "jurisdiction-borders",
-      "consulates",
-      "consulates",
-    ];
     this.mapLevel = this.plotMap
       .selectAll("g")
-      .data(layers)
+      .data(this.layers)
       .join("g")
       .attr("class", (d, i) => `${d} sort-${i}`);
 
@@ -161,6 +178,8 @@ class mapConsulates {
   }
 
   drawPoints() {
+    let transitions = 0;
+
     this.plotMap
       .selectAll(".points")
       .selectAll(".point")
@@ -172,9 +191,15 @@ class mapConsulates {
       .attr("r", 1)
       .style("opacity", 0)
       .transition()
-      .duration(1000)
+      .duration(500)
       .delay((d, i) => i * Math.random())
-      .style("opacity", 1);
+      .style("opacity", 1)
+      .on("end", (d) => {
+        transitions++;
+        if (transitions === this.pts.length) {
+          d3.selectAll(".point").classed("shine", true);
+        }
+      });
   }
 
   filterCaCounties(jur, geometry) {

@@ -68,6 +68,7 @@ Promise.all([
     ca_counties: ca_counties,
     consulate_borders: consulate_borders,
     pts: points,
+    type: "nation",
   });
 
   const change_line = new smallMultiple({
