@@ -11,11 +11,13 @@ class mapConsulates {
     this.pts = item.pts;
     this.selectPlot = d3.select(`#${this.id}`);
     this.year = d3.max(this.data, (d) => d.year);
-    this.consulate = "Washington";
+    this.consulate = "";
 
     this.init();
     this.createSVG();
-    this.drawUS();
+    if (this.type === "nation") {
+      this.drawUS();
+    }
   }
 
   init() {
@@ -240,7 +242,7 @@ class mapConsulates {
       .attr("cy", (d) => this.projection(d[1][0].lonlat)[1])
       .attr("r", 4);
 
-    // this.drawPoints();
+    this.drawPoints();
   }
 
   drawPoints() {
@@ -249,7 +251,11 @@ class mapConsulates {
     this.plotMap
       .selectAll(".points")
       .selectAll(".point")
-      .data(this.pts)
+      .data(
+        this.type === "nation"
+          ? this.pts
+          : this.pts.filter((d) => d.consulate === this.consulate)
+      )
       .join("circle")
       .attr("class", "point")
       .attr("cy", (d) => this.projection(d.xy)[1])
