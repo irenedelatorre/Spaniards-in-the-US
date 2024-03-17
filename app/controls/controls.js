@@ -6,7 +6,8 @@ class Dropdown {
     this.consulatesInfo = item.consulatesInfo;
     this.nation_id = item.nation_id;
     this.info_id = item.info_id;
-    this.map = item.map;
+    this.jur_map = item.jur_map;
+    this.nation_map = item.nation_map;
 
     this.createDropdown();
 
@@ -16,12 +17,13 @@ class Dropdown {
       if (this.value === "All consulates") {
         d3.selectAll(`#${item.nation_id}`).classed("hide", false);
         d3.selectAll(`#${item.info_id}`).classed("hide", true);
+        item.nation_map.updateThisMap(thisConsulate);
       } else {
         d3.selectAll(`#${item.nation_id}`).classed("hide", true);
         d3.selectAll(`#${item.info_id}`).classed("hide", false);
         const thisConsulate = this.value;
         item.consulatesInfo.updateInfo(thisConsulate);
-        item.map.updateThisMap(thisConsulate);
+        item.jur_map.updateThisMap(thisConsulate);
       }
     });
   }

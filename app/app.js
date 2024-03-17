@@ -133,7 +133,8 @@ Promise.all([
     data: consulatesNames,
     id: "consulates-list",
     consulatesInfo: consulatesInfo,
-    map: jur_map,
+    nation_map: us_map,
+    jur_map: jur_map,
     nation_id: "map-nation",
     info_id: "visuals-consulate",
   });
