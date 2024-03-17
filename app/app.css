@@ -2,7 +2,8 @@
 :root {
   --black: #002925;
   --white: #f2f2f2;
-  --grey-soft: #b6b6b7;
+  --green-grey: #95ada9;
+  --green-900: #002925;
   --green-700: #003732; /* background */
   --green-500: #24897a; /* unselected lines */
   --green-300: #95c2bf; /* body */
@@ -86,4 +87,8 @@ header {
   align-items: flex-start;
   gap: 1.5rem;
   width: calc(50% - 0.75rem);
+}
+
+.hide {
+  display: none;
 }
