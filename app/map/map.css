@@ -6,7 +6,15 @@
   margin-bottom: 5em;
 }
 
-.map .nation.sort-0 {
+#map-jurisdiction {
+  width: 100%;
+  height: 70vh;
+  min-height: 550px;
+  border: 1px solid;
+}
+
+.map .nation.sort-0,
+.map .states.sort-0 {
   fill: var(--green-700);
   stroke: var(--white);
   opacity: 0.1;
@@ -15,7 +23,8 @@
   paint-order: stroke;
 }
 
-.map .nation.sort-5 {
+.map .nation.sort-5,
+.map .jurisdiction-polygons.sort-5 path {
   fill: none;
   stroke: var(--green-900);
   opacity: 1;
@@ -37,7 +46,7 @@
   stroke-linejoin: round;
 }
 
-.map .jurisdiction-polygons path {
+.map .jurisdiction-polygons.sort-1 path {
   fill: var(--green-700);
   stroke: none;
 }

@@ -5,6 +5,7 @@ class Dropdown {
     this.select = d3.select(`#${this.id}`);
     this.consulatesInfo = item.consulatesInfo;
     this.nation_id = item.nation_id;
+    this.map = item.map;
 
     this.createDropdown();
 
@@ -17,6 +18,7 @@ class Dropdown {
         d3.selectAll(`#${item.nation_id}`).classed("hide", true);
         const thisConsulate = this.value;
         item.consulatesInfo.updateInfo(thisConsulate);
+        item.map.updateThisMap(thisConsulate);
       }
     });
   }
