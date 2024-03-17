@@ -169,7 +169,12 @@ class mapConsulates {
       .attr("class", "point")
       .attr("cy", (d) => this.projection(d.xy)[1])
       .attr("cx", (d) => this.projection(d.xy)[0])
-      .attr("r", 1);
+      .attr("r", 1)
+      .style("opacity", 0)
+      .transition()
+      .duration(1000)
+      .delay((d, i) => i * Math.random())
+      .style("opacity", 1);
   }
 
   filterCaCounties(jur, geometry) {
