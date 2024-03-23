@@ -17,7 +17,7 @@ body {
   font-family: var(--font-sans);
   font-weight: 300;
   font-size: 16px;
-  line-height: 1.375em;
+  line-height: 1.5em;
   background: var(--green-700);
   color: var(--green-300);
   margin: 0 100px;
@@ -45,7 +45,8 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 3rem 0 1.5rem;
+  margin: 4.5rem auto;
+  max-width: 680px;
 }
 
 .standfirst {
@@ -90,6 +91,11 @@ header {
   width: calc(50% - 0.75rem);
 }
 
+.copy {
+  max-width: 680px;
+  margin: 0 auto 1em;
+}
+
 .information p {
   margin-bottom: 0;
 }
@@ -101,12 +107,13 @@ header {
 .information-row {
   display: flex;
   max-width: 680px;
-  margin: 0 auto 0.5em;
+  margin: 0 auto;
   flex-wrap: wrap;
   gap: 2em;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
+  color: var(--white);
 }
 
 .legend-container {
@@ -120,12 +127,12 @@ header {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 2px;
+  gap: 4px;
   width: auto;
   margin-bottom: 0;
 }
 
 .legend .dot {
   font-size: 0.3em;
-  color: var(--lime-green);
+  color: var(--white);
 }
