@@ -73,7 +73,7 @@ header {
   display: flex;
   width: calc(50% - 0.75rem);
   flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-end;
   gap: 1.5rem;
 }
 
@@ -98,12 +98,22 @@ header {
   display: none;
 }
 
+.information-row {
+  display: flex;
+  max-width: 680px;
+  margin: 0 auto 0.5em;
+  flex-wrap: wrap;
+  gap: 2em;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
 .legend-container {
   justify-content: space-around;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 1em;
 }
 
 .legend {
@@ -116,5 +126,6 @@ header {
 }
 
 .legend .dot {
-  font-size: 0.5em;
+  font-size: 0.3em;
+  color: var(--lime-green);
 }

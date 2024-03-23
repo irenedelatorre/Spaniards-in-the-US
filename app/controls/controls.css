@@ -1,29 +1,28 @@
 .dropdown {
-    display: flex;
-    flex-direction: row;
-    max-width: 680px;
-    margin: 1.5rem auto 0;
-    gap: 0.5rem;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: row;
+  /* max-width: 680px; */
+  /* margin: 1.5rem auto 0; */
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
 }
 
 .dropdown select {
-    width: max-content;
-    border-radius: 0;
-    background-color: var(--green-700);
-    color: var(--yellow);
-    border: 1px solid var(--yellow);
+  width: max-content;
+  border-radius: 0;
+  background-color: var(--green-700);
+  color: var(--yellow);
+  border: 1px solid var(--yellow);
 }
 
 .dropdown select option {
-    padding: 0 2px 8px;
-    line-height: 2em;
-    background: var(--white);
-    color: var(--green-700);
-    
+  padding: 0 2px 8px;
+  line-height: 2em;
+  background: var(--white);
+  color: var(--green-700);
 }
 
 .form-select {
-    --bs-form-select-bg-img: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ffd914' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+  --bs-form-select-bg-img: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ffd914' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
 }
