@@ -79,8 +79,17 @@ class mapConsulates {
     }
   }
 
+  getScale() {
+    const this_scaleHeight = d3
+      .scaleLinear()
+      .domain([610, 747])
+      .range([1300, 1400]);
+    return this_scaleHeight(this.div_height);
+  }
+
   transformations() {
-    this.scale = 1150;
+    this.scale = this.getScale();
+    console.log(this.type, this.height, this.scale);
     this.translate = [this.width / 2, this.height / 2];
     if (this.type !== "nation" && this.consulate === "Boston") {
       this.scale = 5200;

@@ -11,6 +11,7 @@
   --yellow: #ffd914; /* highlight */
   --font-serif: "Big Caslon CC", "Libre Caslon Text", "DM Serif Text", serif;
   --font-sans: "DM Sans", sans-serif;
+  --max-width-copy: 765px;
 }
 
 body {
@@ -20,16 +21,15 @@ body {
   line-height: 1.5em;
   background: var(--green-700);
   color: var(--green-300);
-  margin: 0 100px;
+  margin: 4.5rem auto;
+  max-width: 1240px;
 }
 
 h1 {
   font-family: var(--font-serif);
-  font-size: 2.5em;
+  font-size: 3em;
   line-height: 1.4em;
-  color: var(--white);
-  max-width: 680px;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 h2 {
@@ -38,82 +38,59 @@ h2 {
   line-height: 1.2em;
   color: var(--white);
 }
+
+p {
+  max-width: var(--max-width-copy);
+}
+
+.white {
+  color: var(--white);
+}
 /* header */
 
 header {
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin: 4.5rem auto;
-  max-width: 680px;
+  align-items: start;
+  color: var(--white);
 }
 
 .standfirst {
-  font-size: 1.25em;
-  margin-bottom: 0;
+  font-size: 1.5em;
+  line-height: 1.5em;
+  margin-bottom: 3rem;
+  max-width: var(--max-width-copy);
 }
 
-/* header (map) */
-.header {
-  height: 58%;
-  width: 100%;
-}
-
-/* visuals (info by consulate) */
-.visuals-consulate {
-  display: flex;
-  padding-top: 1.5rem;
-  align-items: flex-start;
-  gap: 1.5rem;
-  align-self: stretch;
-  margin: 0 !important;
-}
-
-.visuals-consulate .consulate-map {
-  display: flex;
-  width: calc(50% - 0.75rem);
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 1.5rem;
-}
-
-.visuals-consulate .consulate-map p {
-  width: 100%;
-  text-align: center;
-}
-.visuals-consulate .information {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-top: 1.5em;
-  gap: 1.5rem;
-  width: calc(50% - 0.75rem);
-}
+/* article */
 
 .copy {
-  max-width: 680px;
-  margin: 0 auto 1em;
+  margin: 0 0 3.5em;
+  text-wrap: balance;
+  line-height: 160%;
+  font-size: 1.125rem;
 }
 
-.information p {
-  margin-bottom: 0;
+/* graphics-wrapper */
+.graphics-wrapper {
+  margin: 6em auto;
+  width: 100%;
+  padding: 0;
 }
 
-.hide {
-  display: none;
-}
+/* information row */
 
 .information-row {
   display: flex;
-  max-width: 680px;
-  margin: 0 auto;
+  width: 100%;
   flex-wrap: wrap;
   gap: 2em;
   flex-direction: row;
   align-items: center;
   justify-content: start;
   color: var(--white);
+  margin: 2.5rem auto 1rem;
 }
 
 .legend-container {
@@ -135,4 +112,60 @@ header {
 .legend .dot {
   font-size: 0.3em;
   color: var(--white);
+}
+
+/* visuals (info by consulate) */
+.visuals-consulate {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  align-self: stretch;
+  margin: 3rem auto 0 !important;
+  padding: 0;
+}
+
+.visuals-consulate .information {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2rem;
+  width: calc(50% - 0.75rem);
+  padding: 0;
+}
+
+.information p {
+  margin-bottom: 0;
+  /* text-wrap: balance; */
+}
+
+.visuals-consulate .icon {
+  width: 1.125rem;
+  display: inline-block;
+  padding-right: 2px;
+}
+
+.visuals-consulate .icon img {
+  width: 100%;
+  height: auto;
+}
+.general-consulates {
+  color: var(--yellow);
+}
+.visuals-consulate .consulate-map {
+  display: flex;
+  width: calc(50% - 0.75rem);
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1.5rem;
+}
+
+.visuals-consulate .consulate-map p {
+  width: 100%;
+  text-align: center;
+  text-wrap: balance;
+  margin-top: 3px;
+}
+
+.hide {
+  display: none;
 }
