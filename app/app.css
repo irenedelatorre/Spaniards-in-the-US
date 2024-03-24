@@ -11,31 +11,39 @@
   --yellow: #ffd914; /* highlight */
   --font-serif: "Big Caslon CC", "Libre Caslon Text", "DM Serif Text", serif;
   --font-sans: "DM Sans", sans-serif;
+  --max-width-copy: 765px;
 }
 
 body {
   font-family: var(--font-sans);
   font-weight: 300;
   font-size: 16px;
-  line-height: 1.375em;
+  line-height: 1.5em;
   background: var(--green-700);
   color: var(--green-300);
-  margin: 0 100px;
+  margin: 4.5rem auto;
+  max-width: 1240px;
 }
 
 h1 {
   font-family: var(--font-serif);
-  font-size: 2.5em;
+  font-size: 3em;
   line-height: 1.4em;
-  color: var(--white);
-  max-width: 680px;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 h2 {
   font-size: 1.125rem;
   font-weight: 700;
-  line-height: 1.2em;
+  line-height: 1.5em;
+  color: var(--white);
+}
+
+p {
+  max-width: var(--max-width-copy);
+}
+
+.white {
   color: var(--white);
 }
 /* header */
@@ -44,58 +52,45 @@ header {
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin: 3rem 0 1.5rem;
+  align-items: start;
+  color: var(--white);
 }
 
 .standfirst {
-  font-size: 1.25em;
-  margin-bottom: 0;
+  font-size: 1.5em;
+  line-height: 1.5em;
+  margin-bottom: 3rem;
+  max-width: var(--max-width-copy);
 }
 
-/* header (map) */
-.header {
-  height: 58%;
+/* article */
+
+.copy {
+  margin: 0 0 3.5em;
+  text-wrap: balance;
+  line-height: 160%;
+  font-size: 1.125rem;
+}
+
+/* graphics-wrapper */
+.graphics-wrapper {
+  margin: 6em auto;
   width: 100%;
+  padding: 0;
 }
 
-/* visuals (info by consulate) */
-.visuals-consulate {
+/* information row */
+
+.information-row {
   display: flex;
-  padding-top: 1.5rem;
-  align-items: flex-start;
-  gap: 1.5rem;
-  align-self: stretch;
-  margin: 0 !important;
-}
-
-.visuals-consulate .consulate-map {
-  display: flex;
-  width: calc(50% - 0.75rem);
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1.5rem;
-}
-
-.visuals-consulate .consulate-map p {
   width: 100%;
-  text-align: center;
-}
-.visuals-consulate .information {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-top: 1.5em;
-  gap: 1.5rem;
-  width: calc(50% - 0.75rem);
-}
-
-.information p {
-  margin-bottom: 0;
-}
-
-.hide {
-  display: none;
+  flex-wrap: wrap;
+  gap: 2em;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  color: var(--white);
+  margin: 2.5rem auto 1rem;
 }
 
 .legend-container {
@@ -103,18 +98,130 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 1em;
 }
 
 .legend {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 2px;
+  gap: 4px;
   width: auto;
   margin-bottom: 0;
 }
 
 .legend .dot {
-  font-size: 0.5em;
+  font-size: 0.3em;
+  color: var(--white);
+}
+
+/* visuals (info by consulate) */
+.visuals-consulate {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1.5rem;
+  align-self: stretch;
+  margin: 3rem auto 0 !important;
+  padding: 0;
+}
+
+.visuals-consulate .information {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2rem;
+  width: calc(50% - 0.75rem);
+  padding: 0;
+}
+
+.information p {
+  margin-bottom: 0;
+  /* text-wrap: balance; */
+}
+
+.visuals-consulate .icon {
+  width: 1.125rem;
+  display: inline-block;
+  padding-right: 2px;
+}
+
+.visuals-consulate .icon img {
+  width: 100%;
+  height: auto;
+}
+.general-consulates {
+  color: var(--yellow);
+}
+.visuals-consulate .consulate-map {
+  display: flex;
+  width: calc(50% - 0.75rem);
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1.5rem;
+}
+
+.visuals-consulate .consulate-map p {
+  width: 100%;
+  text-align: center;
+  text-wrap: balance;
+  margin-top: 3px;
+}
+
+.hide {
+  display: none;
+}
+
+/* tablet L */
+@media only screen and (max-width: 1024px) {
+  body {
+    margin: 4.5rem auto;
+    padding: 0 100px;
+  }
+
+  .copy {
+    margin: 0 0 2em;
+  }
+
+  .graphics-wrapper {
+    margin: 3em auto;
+  }
+
+  .visuals-consulate {
+    flex-direction: column-reverse;
+  }
+
+  .visuals-consulate .information {
+    width: 100%;
+  }
+
+  .visuals-consulate .consulate-map {
+    width: 100%;
+    align-items: center;
+  }
+}
+
+/*  mobile and tablet M*/
+@media only screen and (max-width: 900px) {
+  body {
+    margin: 4.5rem auto;
+    padding: 10px;
+    width: 100%;
+  }
+
+  h1 {
+    font-size: 2em;
+    text-wrap: balance;
+  }
+
+  .standfirst {
+    font-size: 1.3em;
+    text-wrap: balance;
+    margin-bottom: 2rem;
+  }
+
+  .information-row {
+    gap: 1em;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }

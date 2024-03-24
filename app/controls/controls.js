@@ -12,8 +12,6 @@ class Dropdown {
     this.createDropdown();
 
     this.select.on("change", function () {
-      console.log(this.value);
-
       if (this.value === "All consulates") {
         d3.selectAll(`#${item.nation_id}`).classed("hide", false);
         d3.selectAll(`#${item.info_id}`).classed("hide", true);

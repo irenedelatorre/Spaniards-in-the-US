@@ -61,7 +61,6 @@ class ConsulatesInfo {
   }
 
   createQuotes(quotes) {
-    console.log(quotes);
     // update number of indicators
     d3.selectAll("#carouselQuotes")
       .selectAll(".carousel-indicators")

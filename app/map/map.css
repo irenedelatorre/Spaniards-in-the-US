@@ -1,14 +1,38 @@
 #map-nation {
-  width: 100%;
-  height: 70vh;
-  min-height: 550px;
-  margin-bottom: 5em;
+  /* width: 100%; */
+  height: 80vh;
+  min-height: 520px;
+  margin: 0 5em auto;
+  aspect-ratio: 1.7 / 1;
 }
 
 #map-jurisdiction {
-  width: 100%;
-  height: 70vh;
+  height: 65vh;
   min-height: 550px;
+  aspect-ratio: 1 / 1.09;
+}
+
+/* tablet L */
+@media only screen and (max-width: 1024px) {
+  #map-nation {
+    width: 100%;
+    height: auto;
+    /* min-height: 520px; */
+    margin-bottom: 2.5em !important;
+  }
+
+  #map-jurisdiction {
+    height: 30vh;
+    min-height: 300px;
+  }
+}
+
+/*  mobile and tablet M*/
+@media only screen and (max-width: 900px) {
+  #map-nation {
+    width: 100%;
+    min-height: 250px;
+  }
 }
 
 .map .nation.sort-0,

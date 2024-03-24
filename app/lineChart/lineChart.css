@@ -1,6 +1,7 @@
 :root {
   --axis-lines: #485e5c;
-  --axis-text: #95ada9;
+  /* --axis-text: #95ada9; */
+  --axis-text: var(-- --green-300);
 }
 
 .data {
@@ -30,7 +31,7 @@
 .axis .tick text {
   color: var(--axis-text);
   font-family: var(--font-sans);
-  font-size: 1rem;
+  font-size: 0.875rem;
   font-weight: 400;
 }
 

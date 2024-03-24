@@ -1,6 +1,5 @@
 class lineChart {
   constructor(item) {
-    console.log(item);
     this.id = item.id;
     this.data = item.data;
     this.full_data = item.full_data;
@@ -11,7 +10,6 @@ class lineChart {
     this.tickFormat = d3.timeFormat("%Y");
     this.heightCSS = item.height;
 
-    console.log(item.yExtent, "hello");
     // this.addTitle();
     this.init();
     this.createSVG();
@@ -29,7 +27,7 @@ class lineChart {
   init() {
     this.margin = {
       t: 15,
-      l: 70,
+      l: 58,
       r: 50,
       b: 65,
     };
@@ -51,7 +49,6 @@ class lineChart {
       .domain(this.dateExtent)
       .range([0, this.width]);
 
-    console.log(this.dateExtent, this.yExtent, this.width, this.height);
     this.line = d3
       .line()
       .x((d) => this.scale_x(d.date))
@@ -144,8 +141,6 @@ class lineChart {
   build_chart() {
     this.add_axis();
 
-    console.log(this.full_data.filter((d) => d[0] !== this.consulate.id));
-
     const gCharts = this.plot_chart
       .selectAll("g")
       .data(["bkg-lines", "highlighted-line"])
@@ -185,7 +180,6 @@ class lineChart {
   }
 
   updateChart() {
-    console.log(this.data);
     this.build_chart();
   }
 }
