@@ -35,7 +35,7 @@ h1 {
 h2 {
   font-size: 1.125rem;
   font-weight: 700;
-  line-height: 1.2em;
+  line-height: 1.5em;
   color: var(--white);
 }
 
@@ -117,6 +117,7 @@ header {
 /* visuals (info by consulate) */
 .visuals-consulate {
   display: flex;
+  flex-direction: row;
   align-items: flex-start;
   gap: 1.5rem;
   align-self: stretch;
@@ -168,4 +169,59 @@ header {
 
 .hide {
   display: none;
+}
+
+/* tablet L */
+@media only screen and (max-width: 1024px) {
+  body {
+    margin: 4.5rem auto;
+    padding: 0 100px;
+  }
+
+  .copy {
+    margin: 0 0 2em;
+  }
+
+  .graphics-wrapper {
+    margin: 3em auto;
+  }
+
+  .visuals-consulate {
+    flex-direction: column-reverse;
+  }
+
+  .visuals-consulate .information {
+    width: 100%;
+  }
+
+  .visuals-consulate .consulate-map {
+    width: 100%;
+    align-items: center;
+  }
+}
+
+/*  mobile and tablet M*/
+@media only screen and (max-width: 900px) {
+  body {
+    margin: 4.5rem auto;
+    padding: 10px;
+    width: 100%;
+  }
+
+  h1 {
+    font-size: 2em;
+    text-wrap: balance;
+  }
+
+  .standfirst {
+    font-size: 1.3em;
+    text-wrap: balance;
+    margin-bottom: 2rem;
+  }
+
+  .information-row {
+    gap: 1em;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }

@@ -82,8 +82,8 @@ class mapConsulates {
   getScale() {
     const this_scaleHeight = d3
       .scaleLinear()
-      .domain([610, 747])
-      .range([1300, 1400]);
+      .domain([250, 520, 610, 747])
+      .range([400, 1000, 1300, 1400]);
     return this_scaleHeight(this.div_height);
   }
 
