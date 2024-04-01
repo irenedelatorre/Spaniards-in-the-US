@@ -139,13 +139,13 @@ header {
   /* text-wrap: balance; */
 }
 
-.visuals-consulate .icon {
+.icon {
   width: 1.125rem;
   display: inline-block;
   padding-right: 2px;
 }
 
-.visuals-consulate .icon img {
+.icon img {
   width: 100%;
   height: auto;
 }
@@ -200,7 +200,7 @@ header {
   }
 }
 
-/*  mobile and tablet M*/
+/*  tablet M*/
 @media only screen and (max-width: 900px) {
   body {
     margin: 4.5rem auto;
@@ -223,5 +223,31 @@ header {
     gap: 1em;
     flex-direction: column;
     align-items: flex-start;
+  }
+}
+
+/*  tablet M*/
+@media only screen and (max-width: 600px) {
+  body {
+    margin: 4.5rem 0;
+    padding: 10px;
+    width: 100%;
+  }
+
+  h1 {
+    font-size: 2em;
+    text-wrap: balance;
+  }
+
+  .standfirst {
+    font-size: 1.3em;
+    text-wrap: balance;
+    margin-bottom: 2rem;
+  }
+
+  .information-row {
+    gap: 1em;
+    flex-direction: column;
+    align-items: center;
   }
 }
