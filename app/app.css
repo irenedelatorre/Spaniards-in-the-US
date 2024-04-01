@@ -139,13 +139,13 @@ header {
   /* text-wrap: balance; */
 }
 
-.visuals-consulate .icon {
+.icon {
   width: 1.125rem;
   display: inline-block;
   padding-right: 2px;
 }
 
-.visuals-consulate .icon img {
+.icon img {
   width: 100%;
   height: auto;
 }
