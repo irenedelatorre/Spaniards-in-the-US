@@ -17,8 +17,7 @@
   #map-nation {
     width: 100%;
     height: auto;
-    /* min-height: 520px; */
-    margin-bottom: 2.5em !important;
+    margin: 0 0 2.5em;
   }
 
   #map-jurisdiction {
