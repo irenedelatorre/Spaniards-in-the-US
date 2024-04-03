@@ -24,6 +24,10 @@ Promise.all([
 
   // points
   d3.csv("./assets/map/density_pt_by_10.csv", parse.points),
+
+  // area chart
+  d3.csv("./assets/data/translation.csv", parse.translation),
+  d3.csv("./assets/data/total_by_country.csv", parse.countryData),
 ]).then(function (files) {
   const consulates_es = files[0].sort((a, b) => b.census - a.census);
   const consulates_es_info = files[1];
@@ -34,6 +38,9 @@ Promise.all([
   const consulate_jurisdiction = files[4];
   const ca_counties = files[5];
   const points = files[9];
+
+  // area
+  // const
 
   const consulates_us_total = files[6].sort((a, b) => a.date - b.date);
   const us_citizens = files[7].sort((a, b) => a.date - b.date);

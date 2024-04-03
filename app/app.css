@@ -72,6 +72,13 @@ header {
   font-size: 1.125rem;
 }
 
+.copy.about {
+  margin: 3.5em 0;
+  text-wrap: balance;
+  font-size: 1em;
+  line-height: 1.5em;
+}
+
 /* graphics-wrapper */
 .graphics-wrapper {
   margin: 6em auto;
