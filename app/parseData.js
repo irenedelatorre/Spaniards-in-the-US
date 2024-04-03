@@ -83,4 +83,21 @@ const parse = {
 
     return name;
   },
+
+  translation: function (d) {
+    return {
+      spanish: d.Spanish,
+      english: d.English,
+    };
+  },
+
+  countryData: function (d) {
+    return {
+      country: parse_country_es_to_en(d.pais),
+      year: +d.year,
+      month: +d.month,
+      census: d.censo,
+      date: d.date,
+    };
+  },
 };

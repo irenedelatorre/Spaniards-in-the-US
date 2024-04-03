@@ -3,3 +3,6 @@
 .RData
 .Ruserdata
 QGIS/shapefiles/points/density_points_census_higher_density.geojson
+assets/map/points.geojson
+assets/map/points.qmd
+assets/map/density_pt_by_10.qmd
