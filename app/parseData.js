@@ -93,7 +93,7 @@ const parse = {
 
   countryData: function (d) {
     return {
-      country: parse_country_es_to_en(d.pais),
+      // country: parse_country_es_to_en(d.pais),
       year: +d.year,
       month: +d.month,
       census: d.censo,
