@@ -4,7 +4,7 @@ const parse = {
       country_id: d.pais_id === "NA" ? 302 : +d.pais_id,
       consulate_id: +d.consulado_id,
       consulate: parse.change_es_to_en(d.consulado),
-      date: new Date(`${d.month}-01-${d.year}`),
+      date: new Date(`${d.year}-${d.month}-01`),
       census: +d.censo,
       year: +d.year,
       month: +d.month,

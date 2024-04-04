@@ -79,9 +79,10 @@ Promise.all([
   });
 
   // initialize the consulatesInformation
+  const totalConsulates = consulates_es.filter((d) => d.date >= dateExtent[1]);
   const consulatesInfo = new ConsulatesInfo({
     data: {
-      totalConsulates: consulates_es.filter((d) => d.date >= dateExtent[1]),
+      totalConsulates: totalConsulates,
       infoConsulates: consulatesGroup,
       quotes: quotes,
       byConsulate: consulatesGroupsTime,
