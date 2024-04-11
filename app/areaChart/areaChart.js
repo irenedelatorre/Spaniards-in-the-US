@@ -117,8 +117,8 @@ class areaChart {
       .axisBottom(this.scale_x)
       .tickPadding(8)
       .tickValues(
-        this.width < 700
-          ? [this.dateExtent[0], new Date("1-1-2013"), this.dateExtent[1]]
+        this.width < 500
+          ? [this.dateExtent[0], new Date("2013-01-01"), this.dateExtent[1]]
           : [
               this.dateExtent[0],
               // new Date("1-1-2004"),
@@ -127,17 +127,17 @@ class areaChart {
               // new Date("1-1-2007"),
               // new Date("1-1-2008"),
               // new Date("1-1-2009"),
-              new Date("1-1-2010"),
+              new Date("2010-01-01"),
               // new Date("1-1-2011"),
               // new Date("1-1-2012"),
               // new Date("1-1-2013"),
               // new Date("1-1-2014"),
-              new Date("1-1-2015"),
+              new Date("2015-01-01"),
               // new Date("1-1-2016"),
               // new Date("1-1-2017"),
               // new Date("1-1-2018"),
               // new Date("1-1-2019"),
-              new Date("1-1-2020"),
+              new Date("2020-01-01"),
               // new Date("1-1-2021"),
               // new Date("1-1-2022"),
               // new Date("1-1-2023"),

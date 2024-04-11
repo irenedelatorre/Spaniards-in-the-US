@@ -271,7 +271,11 @@ class mapConsulates {
       .transition()
       .duration(500)
       .delay((d, i) =>
-        this.type === "nation" ? (i * Math.random()) / 2 : i * Math.random()
+        this.type === "nation" && this.width < 500
+          ? 0
+          : this.type === "nation" && this.width <= 500
+          ? (i * Math.random()) / 2
+          : i * Math.random()
       )
       .style("opacity", 1)
       .on("end", (d) => {
