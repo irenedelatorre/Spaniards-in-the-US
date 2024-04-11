@@ -377,4 +377,10 @@ class mapConsulates {
     this.createSVG();
     this.drawUS();
   }
+
+  reDrawMap() {
+    this.init();
+    this.createSVG();
+    this.drawUS();
+  }
 }
