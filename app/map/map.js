@@ -272,8 +272,8 @@ class mapConsulates {
       .duration(500)
       .delay((d, i) =>
         this.type === "nation" && this.width < 500
-          ? 0
-          : this.type === "nation" && this.width <= 500
+          ? (i * Math.random()) / 4
+          : this.type === "nation" && this.width >= 500
           ? (i * Math.random()) / 2
           : i * Math.random()
       )
