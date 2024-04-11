@@ -19,6 +19,10 @@ class ConsulatesInfo {
     this.select_id_author = d3.select(`#${this.id_author}`);
     this.select_id_jurisdiction = d3.select(`#${this.id_jurisdiction}`);
     // this.quote = item.quote;
+
+    window.onresize = function () {
+      this.redrawChart();
+    };
   }
 
   updateInfo(d) {
@@ -115,9 +119,14 @@ class ConsulatesInfo {
   }
 
   updateChart(consulate) {
+    console.log(consulate);
     this.dataByConsulate.data = this.data.byConsulate.filter(
       (d) => d[1][0].consulate.toLowerCase() === consulate.toLowerCase()
     )[0];
     this.dataByConsulate.updateChart();
+  }
+
+  redrawChart() {
+    this.updateChart(this.consulate.consulate);
   }
 }

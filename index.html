@@ -2,8 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>CERA - Españoles viviendo en Estados Unidos</title>
+    <title>Where do Spaniards live in the US?</title>
+    <meta title="Where do Spaniards live in the US?">
+    <meta name="twitter:title" content="Where do Spaniards live in the US?">
+    <meta property="og:title" content="Where do Spaniards live in the US?">
+    <meta name="description" content="
+        Spanish nationals that live outside Spain for more than a year are 
+        asked by the Government to register in a General Consulate. If they 
+        are of voting age, they become part of the Electoral Census of Spaniards
+        Residing Abroad (CERA). Although it is up to the person to do so, the
+        CERA dataset, incomplete and changing in nature, provides a snapshot of
+        where Spaniards study, work, or form a family abroad.">
     <meta name="author" content="Irene de la Torre Arenas" />
+
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=yes"
@@ -20,17 +31,22 @@
     <link href="app/app.css" rel="stylesheet" />
     <link href="app/map/map.css" rel="stylesheet" />
     <link href="app/lineChart/lineChart.css" rel="stylesheet" />
+    <link href="app/areaChart/areaChart.css" rel="stylesheet" />
     <link href="app/controls/controls.css" rel="stylesheet" />
     <link href="app/consulate-info/consulate-info.css" rel="stylesheet" />
   </head>
   <body>
-    <header>
+    <header class="container">
       <h1>Where do Spaniards live in the US?</h1>
       <p class="standfirst">
         A snapshot of where Spaniards study, work, or form a family abroad
       </p>
+      <p class="byline">
+        By <span class="author">Irene de la Torre Arenas</span>, 
+        April 1st 2024
+      </p>
     </header>
-    <div class="copy">
+    <div class="container copy">
       <p>
         Spanish nationals that live outside Spain for more than a year are asked
         by the Government to register in a General Consulate. If they are of
@@ -39,38 +55,40 @@
         CERA dataset, incomplete and changing in nature, provides a snapshot of
         where Spaniards study, work, or form a family abroad.
       </p>
+      <p>
+        Spain has
+        <span class="icon" aria-hidden="true">
+          <img alt="icon" src="assets/imgs/dot-consulate.svg"></img>
+          </span>
+        <span class="highlight-consulate">nine general consulates</span>
+        in the US, each covering
+        <span class="highlight-consulate">different jurisdictions</span>.
+        The CERA data only
+        indicates which consulate Spanish citizens registered in, but not
+        where they specifically live. We can assume people cluster around the
+        consulates, often located in big cities and home to universities and
+        technology hubs that attract researchers, professionals, and students
+        alike.
+      </p>
     </div>
     <div class="container-fluid graphics-wrapper">
-       <p class="white">
-            Spain has
-            <span class="icon">
-              <img src="assets/imgs/dot-consulate.svg"></img>
-              </span>
-            <span class="highlight-consulate">nine general consulates</span>
-            in the US, each covering
-            <span class="highlight-consulate">different jurisdictions</span>.
-            The CERA data only
-            indicates which consulate Spanish citizens registered in, but not
-            where they specifically live. We can assume people cluster around the
-            consulates, often located in big cities and home to universities and
-            technology hubs that attract researchers, professionals, and students
-            alike.
-          </p>
       <div class="information-row">
         <div class="legend-container">
           <p class="legend"><span class="dot">⬤</span>10 Spaniards</p>
         </div>
+
         <div class="dropdown">
-          <label>Choose a jurisdiction</label>
-          <select
-            id="consulates-list"
-            class="form-select"
-            aria-label="Default"
-          ></select>
+            <label>Choose a jurisdiction</label>
+            <select
+              id="consulates-list"
+              class="form-select"
+              aria-label="Default"
+            ></select>
         </div>
       </div>
 
       <div id="map-nation" class="row"></div>
+
       <div id="visuals-consulate" class="row visuals-consulate hide">
         <div class="information">
           <!-- start of carousel -->
@@ -93,9 +111,8 @@
               </span>
             </h2>
             <div class="chart">
-              <p class="chart-title">
-                CERA registrations by consulate and year
-              </p>
+              <p class="chart-title "></p>
+              <p class="legend">CERA registrations by consulate and year</p>
               <div id="plotConsulate"></div>
             </div>
           </div>
@@ -105,39 +122,60 @@
           <div id="map-jurisdiction" class="row"></div>
         </div>
       </div>
-      
-      <div class="copy about">
-        <p>
-          When Spaniards discuss migration, they typically view it from the
-          perspective of Spain being the destination. However, Spaniards can
-          also be immigrants: whether they experienced exile decades ago or
-          pursued better job opportunities abroad to navigate financial crises.
-          Even today, many continue to travel to broaden their professional and
-          personal horizons. They are the fortunate ones who choose to 
-          live an adventure beyond their homeland.
-        </p>
-        <!-- <div class="graphics">
+      </div>
+    <div class="about">
+        <div class="container">
+          <p>
+            When Spaniards discuss migration, they typically view it from the
+            perspective of Spain being the destination. However, they can
+            be immigrants too: whether they experienced exile decades ago or
+            pursued better job opportunities abroad to navigate financial crises.
+            Even today, many continue to travel to broaden their professional and
+            personal horizons. They are the fortunate ones who, instead of 
+            being forced to leave, <italic>choose</italic> to 
+            live an adventure beyond their homeland.
+          </p>
+        </div>
+      <div class="container-fluid graphics">
           <div class="graphic-summary">
-            <h2>The number of Spaniards living abroad has doubled in 20 years...</h2>
+            <h2>The number of Spaniards living abroad <span class="br"></br></span> doubled in 20 years...</h2>
             <p class="legend">CERA registrations by country and year</p>
-            <div id="spaniards-living-abroad"></div>
+            <div id="spaniards-living-abroad" 
+              aria-label="Graph showing the trend of the number of Spaniards 
+              living abroad for 20 years, from January 2003 to December 2023. 
+              It presents the CERA (Consular Register of Spanish Residents 
+              Abroad) registrations by country and year. As of December 2023, 
+              there are 2,390,267 Spaniards living abroad, indicating that 
+              the number has doubled in the last 20 years. The three countries 
+              with the most registrations are Argentina, France, and the US."
+            ></div>
           </div>
-          
+
           <div class="graphic-summary">
             <h2>
               ...since 2003, the number of Spanish nationals registered in 
               US Consulates has increased by 330 per cent
             </h2>
-            <p class="legend">CERA registrations by country and year</p>
-            <div id="spaniards-living-us"></div>
+            <p class="legend">CERA registrations in the US consulates by year</p>
+            <div id="spaniards-living-us" 
+              aria-label="Graph showing the trend of Spanish nationals registered 
+              in US Consulates from January 2003 to December 2023. It highlights 
+              a 330 per cent increase over the period. The three consulates with 
+              more Spaniards registered are Miami, New York, and Houston.
+              As of December 2023, 173,258 Spaniards live in the US, a number 
+              that has been steadily increasing over the last 20 years."
+            ></div>
           </div>
-        </div> -->
-        <p>I never thought I would be an immigrant myself. But in 2015, I 
+      </div>
+      <div class="container">
+        <p>
+          I never thought I would be an immigrant myself. But in 2015, I 
           became one when I relocated to Boston to pursue a Master of 
           Fine Arts. Seeking to understand my experience, I became 
           fascinated by the Electoral Census of Spaniards Residing Abroad 
           (CERA), where Spanish nationals must register if they plan to 
-          live outside Spain for more than a year. Suddenly, I became a number.
+          live outside Spain for more than a year. Suddenly, I became a 
+          number.
         </p>
         <p>
           Migration is a multifaceted experience, offering both freedom and 
@@ -151,17 +189,24 @@
         </p>
         <p>
           To provide a wider representation of this view, I reached out 
-          to fellow Spaniards who currently live or have lived across different
-          parts of the United States. I asked them about what they missed from 
-          Spain and their newfound joys. This infographic delves into the 
-          complexities of Spanish migration in the United States: from the 
-          cold statistical data to the challenges and achievements of those who 
-          embark on the journey of seeing how their culture intersects with another.
+          to fellow Spaniards who currently live or have lived across 
+          different parts of the United States. I asked them about what they 
+          missed from Spain and their newfound joys. This project delves 
+          into the complexities of Spanish migration in the United States: 
+          from the cold statistical data to the challenges and achievements 
+          of those who embark on the journey of seeing how their culture 
+          intersects with another.
         </p>
-
       </div>
-    </div>
-    <footer></footer>
+    <footer class="container">
+      <p>This project was produced for the exhibition 
+        <a 
+        href="https://www.spainculture.us/city/washington-dc/spainfographics/" 
+        aria-label="Page of SPAINFOGRAPHICS">SPAINFOGRAPHICS</a> 
+        that explored the intricate relationship between Spain and the U.S. 
+        through the work of twelve Spanish infographists.
+      </p>
+    </footer>
 
     <!-- bootstrap -->
     <script
@@ -182,6 +227,7 @@
     <script src="app/map/map.js"></script>
     <script src="app/lineChart/lineChart.js"></script>
     <script src="app/lineChart/smallMultiple.js"></script>
+    <script src="app/areaChart/areaChart.js"></script>
     <script src="app/app.js"></script>
   </body>
 </html>

@@ -1,0 +1,61 @@
+.graphic-summary .areas .area {
+  fill: var(--green-500);
+  fill-opacity: 0.4;
+  stroke: none;
+}
+
+.graphic-summary .areas .highlight {
+  fill: var(--lime-green);
+  fill-opacity: 0.7;
+  stroke: none;
+}
+
+.graphic-summary .lines .area-line {
+  stroke: var(--lime-green);
+  fill: none;
+  stroke-dasharray: 2px 3px;
+  stroke-width: 1px;
+}
+
+.graphic-summary .labels .label {
+  fill: var(--lime-green);
+  /* stroke: #0c4e46; */
+  /* stroke-width: 0.3em; */
+  /* text-anchor: end; */
+  /* paint-order: stroke;
+  stroke-linejoin: round;
+  stroke-linecap: round; */
+  text-transform: capitalize;
+}
+
+.graphic-summary .labels .label.highlight {
+  fill: var(--white);
+  font-weight: 600;
+}
+
+.graphic-summary .total .total-line {
+  stroke: var(--lime-green);
+  fill: none;
+  stroke-width: 3px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.graphic-summary .total .total-circle {
+  fill: var(--green-700);
+  stroke: var(--lime-green);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.graphic-summary .total text {
+  fill: var(--lime-green);
+  stroke: "none";
+  /* font-size: 1.125em; */
+  text-anchor: end;
+}
+
+.graphic-summary .total .total-label-highlight {
+  font-weight: 600;
+}

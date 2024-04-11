@@ -14,7 +14,6 @@ ISLANDIA,Iceland
 ITALIA,Italy
 LIECHTENSTEIN,Liechtenstein
 LUXEMBURGO,Luxembourg
-MALTA,Malta
 MONACO,Monaco
 NORUEGA,Norway
 PAISES BAJOS,Netherlands
@@ -39,6 +38,8 @@ CROACIA,Croatia
 ESLOVENIA,Slovenia
 RUSIA,Russia
 SERBIA Y MONTENEGRO,Serbia and Montenegro
+SERBIA,Serbia
+MONTENEGRO
 BURKINA FASO,Burkina Faso
 ANGOLA,Angola
 ARGELIA,Algeria
@@ -113,9 +114,9 @@ PARAGUAY,Paraguay
 PERU,Peru
 URUGUAY,Uruguay
 VENEZUELA,Venezuela
-PUERTO RICO,Puerto Rico
-ARUBA,Aruba
-ANTILLAS NEERLANDESAS,Netherlands Antilles
+PUERTO RICO(*),Puerto Rico
+ARUBA(*),Aruba
+ANTILLAS NEERLANDESAS(*),Netherlands Antilles
 ANGUILLA,Anguilla
 ISLAS VIRGENES BRITANICAS,British Virgin Islands
 ISLAS VIRGENES DE LOS ESTADOS UNIDOS,United States Virgin Islands
@@ -156,154 +157,224 @@ REUNION,Reunion
 ISLAS AZORES,Azores
 MADEIRA,Madeira
 ISLAS CANARIAS,Canary Islands
-ANGOLA ,Angola
-ARGELIA ,Algeria
-BENIN ,Benin
-BOTSWANA ,Botswana
-BURKINA FASO ,Burkina Faso
-BURUNDI ,Burundi
-CABO VERDE ,Cape Verde
-CAMERUN ,Cameroon
-REPUBLICA CENTROAFRICANA ,Central African Republic
-CHAD ,Chad
-COMORAS ,Comoros
-CONGO ,Congo
-COSTA DE MARFIL ,Ivory Coast
-DJIBOUTI ,Djibouti
-EGIPTO ,Egypt
-GUINEA ECUATORIAL ,Equatorial Guinea
-ERITREA ,Eritrea
-ETIOPIA ,Ethiopia
-GABON ,Gabon
-GAMBIA ,Gambia
-GHANA ,Ghana
-GUINEA ,Guinea
-GUINEA-BISSAU ,Guinea-Bissau
-KENIA ,Kenya
-LESOTO ,Lesotho
-LIBERIA ,Liberia
-LIBIA ,Libya
-MADAGASCAR ,Madagascar
-MALAWI ,Malawi
-MALI ,Mali
-MAURICIO ,Mauritius
-MAURITANIA ,Mauritania
-MAYOTTE ,Mayotte
-MARRUECOS ,Morocco
-MOZAMBIQUE ,Mozambique
-NAMIBIA ,Namibia
-NIGER ,Niger
-NIGERIA ,Nigeria
-REUNION ,Reunion
-RUANDA ,Rwanda
-SANTA HELENA ,Saint Helena
-SANTO TOME Y PRINCIPE ,Sao Tome and Principe
-SENEGAL ,Senegal
-SEYCHELLES ,Seychelles
-SIERRA LEONA ,Sierra Leone
-SOMALIA ,Somalia
-SUDAN ,Sudan
-SWAZILANDIA ,Swaziland
-TANZANIA ,Tanzania
-TOGO ,Togo
-TUNEZ ,Tunisia
-UGANDA ,Uganda
-REPUBLICA ARABE SIRIA ,Syrian Arab Republic
-ZAMBIA ,Zambia
-ZIMBABUE ,Zimbabwe
-TERRITORIO BRITANICO DEL OCEANO INDICO ,British Indian Ocean Territory
-ISLAS AZORES ,Azores
-MADEIRA ,Madeira
-ISLAS CANARIAS ,Canary Islands
-ANDORRA ,Andorra
-GIBRALTAR ,Gibraltar
-GUERNESEY ,Guernsey
-ISLA DE MAN ,Isle of Man
-JERSEY ,Jersey
-SVALBARD Y JAN MAYEN ,Svalbard and Jan Mayen
-ISLAS VIRGENES BRITANICAS ,British Virgin Islands
-ANGUILLA ,Anguilla
-BERMUDAS ,Bermuda
-ISLAS CAYMAN ,Cayman Islands
-GUADALUPE ,Guadeloupe
-MARTINICA ,Martinique
-MONTSERRAT ,Montserrat
-SAN BARTOLOME ,Saint Barthélemy
-SAN MARTIN ,Saint Martin (French part)
-SAN PEDRO Y MIQUELON ,Saint Pierre and Miquelon
-TURCAS Y CAICOS ,Turks and Caicos Islands
-ANTIGUA Y BARBUDA ,Antigua and Barbuda
-BAHAMAS ,Bahamas
-BARBADOS ,Barbados
-BELICE ,Belize
-COSTA RICA ,Costa Rica
-CUBA ,Cuba
-DOMINICA ,Dominica
-EL SALVADOR ,El Salvador
-GRANADA ,Grenada
-GUATEMALA ,Guatemala
-HAITI ,Haiti
-HONDURAS ,Honduras
-JAMAICA ,Jamaica
-NICARAGUA ,Nicaragua
-PANAMA ,Panama
-SAN CRISTOBAL Y NIEVES ,Saint Kitts and Nevis
-SANTA LUCIA ,Saint Lucia
-SAN VICENTE Y LAS GRANADINAS ,Saint Vincent and the Grenadines
-TRINIDAD Y TOBAGO ,Trinidad and Tobago
-ARGENTINA ,Argentina
-BOLIVIA ,Bolivia
-BRASIL ,Brazil
-CHILE ,Chile
-COLOMBIA ,Colombia
-ECUADOR ,Ecuador
-GUYANA ,Guyana
-PARAGUAY ,Paraguay
-PERU ,Peru
-SURINAME ,Suriname
-URUGUAY ,Uruguay
-VENEZUELA ,Venezuela
-GROENLANDIA ,Greenland
-ISLANDIA ,Iceland
-ALBANIA ,Albania
-ALEMANIA ,Germany
-ANDORRA ,Andorra
-AUSTRIA ,Austria
-BELGICA ,Belgium
-BOSNIA Y HERZEGOVINA ,Bosnia and Herzegovina
-BULGARIA ,Bulgaria
-CROACIA ,Croatia
-DINAMARCA ,Denmark
-ESLOVAQUIA ,Slovakia
-ESLOVENIA ,Slovenia
-ESPANA ,Spain
-ESTONIA ,Estonia
-FINLANDIA ,Finland
-FRANCIA ,France
-GRECIA ,Greece
-HOLANDA ,Netherlands
-HUNGRIA ,Hungary
-IRLANDA ,Ireland
-ISLAS FEROE ,Faroe Islands
-ITALIA ,Italy
-LETONIA ,Latvia
-LIECHTENSTEIN ,Liechtenstein
-LITUANIA ,Lithuania
-LUXEMBURGO ,Luxembourg
-MACEDONIA ,North Macedonia
-MALTA ,Malta
-MOLDAVIA ,Moldova
-MONACO ,Monaco
-MONTENEGRO ,Montenegro
-NORUEGA ,Norway
-PAISES BAJOS ,Netherlands
-POLONIA ,Poland
-PORTUGAL ,Portugal
-REINO UNIDO ,United Kingdom
-REPUBLICA CHECA ,Czech Republic
-RUMANIA ,Romania
-RUSIA ,Russia
-SUECIA ,Sweden
-SUIZA ,Switzerland
-UCRANIA ,Ukraine
-VATIKAN ,Vatican City
+ARABIA SAUDI,Saudi Arabia
+BAHREIN,Bahrein
+MYANMAR,Myanmar
+CHINA,China
+EMIRATOS ARABES UNIDOS,United Arab Emirates
+FILIPINAS,Philippines
+INDIA,India
+INDONESIA,Indonesia
+IRAK,Iraq
+IRAN,Iran
+ISRAEL,Israel
+JAPON,Japan
+JORDANIA,Jordan
+CAMBOYA,Camboya
+KUWAIT,Kuwait
+LAOS,Laos
+LIBANO,Lebanon
+MALASIA,Malaysia
+OMAN,Oman
+PAKISTAN,Pakistan
+QATAR,Qatar
+REPUBLICA DE COREA,South Korea
+SINGAPUR,Singapore
+SIRIA,Syria
+SRI-LANKA,Sri-Lanka
+TAILANDIA,Thailand
+TURQUIA,Turkey
+VIETNAM,Vietnam
+TAIWAN,Taiwan
+YEMEN,Yemen
+KAZAJSTAN,Kazajstan
+MOLDAVIA,Moldova
+MACEDONIA (EX-REP.YUG.),North Macedonia
+TRINIDAD Y TOBAGO,Trinidad and Tobago
+UZBEKISTAN,Uzbekistan
+TERRITORIOS PALESTINOS,"Palestine. Observer State, not a member of the United Nation"
+ANGOLA,Angola
+ARGELIA,Algeria
+BENIN,Benin
+BOTSWANA,Botswana
+BURKINA FASO,Burkina Faso
+BURUNDI,Burundi
+CABO VERDE,Cape Verde
+CAMERUN,Cameroon
+REPUBLICA CENTROAFRICANA,Central African Republic
+CHAD,Chad
+COMORAS,Comoros
+CONGO,Congo
+COSTA DE MARFIL,Ivory Coast
+DJIBOUTI,Djibouti
+EGIPTO,Egypt
+GUINEA ECUATORIAL,Equatorial Guinea
+ERITREA,Eritrea
+ETIOPIA,Ethiopia
+GABON,Gabon
+GAMBIA,Gambia
+GHANA,Ghana
+GUINEA,Guinea
+GUINEA-BISSAU,Guinea-Bissau
+KENIA,Kenya
+LESOTO,Lesotho
+LIBERIA,Liberia
+LIBIA,Libya
+MADAGASCAR,Madagascar
+MALAWI,Malawi
+MALI,Mali
+MAURICIO,Mauritius
+MAURITANIA,Mauritania
+MAYOTTE,Mayotte
+MARRUECOS,Morocco
+MOZAMBIQUE,Mozambique
+NAMIBIA,Namibia
+NIGER,Niger
+NIGERIA,Nigeria
+REUNION,Reunion
+RUANDA,Rwanda
+SANTA HELENA,Saint Helena
+SANTO TOME Y PRINCIPE,Sao Tome and Principe
+SENEGAL,Senegal
+SEYCHELLES,Seychelles
+SIERRA LEONA,Sierra Leone
+SOMALIA,Somalia
+SUDAN,Sudan
+SWAZILANDIA,Swaziland
+TANZANIA,Tanzania
+TOGO,Togo
+TUNEZ,Tunisia
+UGANDA,Uganda
+REPUBLICA ARABE SIRIA,Syrian Arab Republic
+ZAMBIA,Zambia
+ZIMBABUE,Zimbabwe
+TERRITORIO BRITANICO DEL OCEANO INDICO,British Indian Ocean Territory
+ISLAS AZORES,Azores
+MADEIRA,Madeira
+ISLAS CANARIAS,Canary Islands
+ANDORRA,Andorra
+GIBRALTAR,Gibraltar
+GUERNESEY,Guernsey
+ISLA DE MAN,Isle of Man
+JERSEY,Jersey
+SVALBARD Y JAN MAYEN,Svalbard and Jan Mayen
+ISLAS VIRGENES BRITANICAS,British Virgin Islands
+ANGUILLA,Anguilla
+BERMUDAS,Bermuda
+ISLAS CAYMAN,Cayman Islands
+GUADALUPE,Guadeloupe
+MARTINICA,Martinique
+MONTSERRAT,Montserrat
+SAN BARTOLOME,Saint Barthélemy
+SAN MARTIN,Saint Martin (French part)
+SAN PEDRO Y MIQUELON,Saint Pierre and Miquelon
+TURCAS Y CAICOS,Turks and Caicos Islands
+ANTIGUA Y BARBUDA,Antigua and Barbuda
+BAHAMAS,Bahamas
+BARBADOS,Barbados
+BELICE,Belize
+COSTA RICA,Costa Rica
+CUBA,Cuba
+DOMINICA,Dominica
+EL SALVADOR,El Salvador
+GRANADA,Grenada
+GUATEMALA,Guatemala
+HAITI,Haiti
+HONDURAS,Honduras
+JAMAICA,Jamaica
+NICARAGUA,Nicaragua
+PANAMA,Panama
+SAN CRISTOBAL Y NIEVES,Saint Kitts and Nevis
+SANTA LUCIA,Saint Lucia
+SAN VICENTE Y LAS GRANADINAS,Saint Vincent and the Grenadines
+TRINIDAD Y TOBAGO,Trinidad and Tobago
+ARGENTINA,Argentina
+BOLIVIA,Bolivia
+BRASIL,Brazil
+CHILE,Chile
+COLOMBIA,Colombia
+ECUADOR,Ecuador
+GUYANA,Guyana
+PARAGUAY,Paraguay
+PERU,Peru
+SURINAME,Suriname
+URUGUAY,Uruguay
+VENEZUELA,Venezuela
+GROENLANDIA,Greenland
+ISLANDIA,Iceland
+ALBANIA,Albania
+ALEMANIA,Germany
+ANDORRA,Andorra
+AUSTRIA,Austria
+BELGICA,Belgium
+BOSNIA Y HERZEGOVINA,Bosnia and Herzegovina
+BULGARIA,Bulgaria
+CROACIA,Croatia
+DINAMARCA,Denmark
+ESLOVAQUIA,Slovakia
+ESLOVENIA,Slovenia
+ESPANA,Spain
+ESTONIA,Estonia
+FINLANDIA,Finland
+FRANCIA,France
+GRECIA,Greece
+HOLANDA,Netherlands
+HUNGRIA,Hungary
+IRLANDA,Ireland
+ISLAS FEROE,Faroe Islands
+ITALIA,Italy
+LETONIA,Latvia
+LIECHTENSTEIN,Liechtenstein
+LITUANIA,Lithuania
+LUXEMBURGO,Luxembourg
+MACEDONIA,North Macedonia
+MACEDONIA DEL NORTE,North Macedonia
+MALTA,Malta
+MOLDAVIA,Moldova
+MONACO,Monaco
+MONTENEGRO,Montenegro
+NORUEGA,Norway
+PAISES BAJOS,Netherlands
+POLONIA,Poland
+PORTUGAL,Portugal
+REINO UNIDO,United Kingdom
+REPUBLICA CHECA,Czech Republic
+RUMANIA,Romania
+RUSIA,Russia
+SUECIA,Sweden
+SUIZA,Switzerland
+UCRANIA,Ukraine
+VATIKAN,Vatican City
+SAN MARINO,San Marino
+AFGANISTAN,Afghanistan
+ARMENIA,Armenia
+AZERBAIYAN,Azerbaijan
+BANGLADESH,Bangladesh
+BRUNEI,Brunei
+COREA,South Korea
+COREA DEL NORTE,North Korea
+FIJI,Fiji
+IRAQ,Iraq
+KIRGUISTAN,Kyrgyzstan
+LESOTHO,Lesotho
+MALDIVAS,Maldives
+MONGOLIA,Mongolia
+NA,N/A
+NEPAL,Nepal
+OTROS PAISES DE ASIA,Other Asian Countries
+OTROS PAISES O TERRITORIOS DE ASIA,Other Countries or Territories in Asia
+PALAOS,Palau
+"PALESTINA. ESTADO OBSERVADOR, NO MIEMBRO DE NACIONES UNIDAS","Palestine. Observer State, not a member of the United Nation"
+"PALESTINA, ESTADO OBSERVADOR NO MIEMBRO DE NACIONES UNIDAS","Palestine. Observer State, not a member of the United Nation"
+REP.DEMOCRATICA DEL CONGO,Democratic Republic of the Congo
+SAN MARINO,San Marino
+SAN VICENTE Y GRANADINAS,Saint Vincent and the Grenadines
+SANTA SEDE,Vatican City
+SRI LANKA,Sri Lanka
+SUDAN DEL SUR,South Sudan
+SURINAM,Suriname
+TADYIKISTAN,Tajikistan
+TAYIKISTAN,Tajikistan
+TIMOR ORIENTAL,East Timor (Timor-Leste)
+TURKMENISTAN,Turkmenistan
+ISLAS COOK,Cook Islands
