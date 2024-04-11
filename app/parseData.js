@@ -45,16 +45,6 @@ const parse = {
     };
   },
 
-  us_citizens: function (d) {
-    return {
-      year: +d.year,
-      country: "Spain",
-      consulate: "US citizens in Spain",
-      date: new Date(`1-1-${d.year}`),
-      census: +d.censo,
-    };
-  },
-
   quotes: function (d) {
     return {
       quote: d.Frase,
@@ -93,11 +83,18 @@ const parse = {
 
   countryData: function (d) {
     return {
-      // country: parse_country_es_to_en(d.pais),
+      pais: d.pais,
       year: +d.year,
       month: +d.month,
-      census: d.censo,
-      date: d.date,
+      census: +d.censo,
+      date: new Date(`${d.year}-${d.month}-01`),
     };
+  },
+
+  translate: function (array, dictionary) {
+    array.forEach((d) => {
+      const country = dictionary.filter((e) => e.spanish === d.pais);
+      d.country = country[0].english;
+    });
   },
 };

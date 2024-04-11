@@ -89,7 +89,7 @@ class mapConsulates {
 
   transformations() {
     this.scale = this.getScale();
-    console.log(this.type, this.height, this.scale);
+
     this.translate = [this.width / 2, this.height / 2];
     if (this.type !== "nation" && this.consulate === "Boston") {
       this.scale = 5200;
@@ -270,7 +270,9 @@ class mapConsulates {
       .style("opacity", 0)
       .transition()
       .duration(500)
-      .delay((d, i) => i * Math.random())
+      .delay((d, i) =>
+        this.type === "nation" ? (i * Math.random()) / 2 : i * Math.random()
+      )
       .style("opacity", 1)
       .on("end", (d) => {
         transitions++;

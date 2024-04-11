@@ -11,7 +11,9 @@
   --yellow: #ffd914; /* highlight */
   --font-serif: "Big Caslon CC", "Libre Caslon Text", "DM Serif Text", serif;
   --font-sans: "DM Sans", sans-serif;
-  --max-width-copy: 765px;
+  --max-width-copy: 680px;
+  --max-width-header: 1180px;
+  --max-width-container: 680px;
 }
 
 body {
@@ -23,13 +25,18 @@ body {
   color: var(--green-300);
   margin: 4.5rem auto;
   max-width: 1240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 h1 {
   font-family: var(--font-serif);
-  font-size: 3em;
+  font-size: 3.5em;
   line-height: 1.4em;
-  margin-bottom: 1rem;
+  margin-bottom: 6px;
+  /* text-align: center; */
+  text-wrap: balance;
 }
 
 h2 {
@@ -37,53 +44,84 @@ h2 {
   font-weight: 700;
   line-height: 1.5em;
   color: var(--white);
+  /* font-family: var(--font-serif); */
+  text-wrap: balance;
 }
 
 p {
   max-width: var(--max-width-copy);
+  font-size: 1.125em;
+  line-height: 153%;
+  margin-bottom: 1.5rem;
+}
+
+a {
+  color: var(--yellow);
+}
+
+a:hover {
+  color: var(--white);
+}
+
+italic {
+  font-style: italic;
 }
 
 .white {
   color: var(--white);
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  max-width: var(--max-width-container);
+  padding: 0;
+}
+
+.container-fluid {
+  margin: 5em auto 6em;
+  width: 100%;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 /* header */
 
 header {
-  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: start;
+  /* align-items: start; */
   color: var(--white);
+  max-width: var(--max-width-header);
 }
 
 .standfirst {
-  font-size: 1.5em;
+  font-size: 1.25em;
   line-height: 1.5em;
-  margin-bottom: 3rem;
-  max-width: var(--max-width-copy);
+  max-width: var(--max-width-header);
+  margin-bottom: 0;
+  color: var(--green-300);
+  font-weight: 400;
+  padding-bottom: 14px;
+}
+
+.byline {
+  font-size: 0.875rem;
+  padding-top: 0;
+  color: var(--green-300);
 }
 
 /* article */
 
 .copy {
-  margin: 0 0 3.5em;
-  text-wrap: balance;
-  line-height: 160%;
-  font-size: 1.125rem;
+  margin: 2.5em 0 0;
 }
 
-.copy.about {
-  margin: 3.5em 0;
-  text-wrap: balance;
+.about {
   font-size: 1em;
   line-height: 1.5em;
-}
-
-/* graphics-wrapper */
-.graphics-wrapper {
-  margin: 6em auto;
-  width: 100%;
-  padding: 0;
 }
 
 /* information row */
@@ -95,9 +133,14 @@ header {
   gap: 2em;
   flex-direction: row;
   align-items: center;
-  justify-content: start;
+  justify-content: center;
   color: var(--white);
-  margin: 2.5rem auto 1rem;
+  margin: 0 auto 1.5rem;
+  max-width: var(--max-width-copy);
+}
+
+.information-row p {
+  font-size: 1rem;
 }
 
 .legend-container {
@@ -114,6 +157,7 @@ header {
   gap: 4px;
   width: auto;
   margin-bottom: 0;
+  font-size: 1rem;
 }
 
 .legend .dot {
@@ -172,17 +216,51 @@ header {
   text-align: center;
   text-wrap: balance;
   margin-top: 3px;
+  font-size: 1rem;
 }
 
 .hide {
   display: none;
 }
 
+/* area chart */
+
+.about .graphics {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 4em;
+  /* margin: 0 auto 4em; */
+}
+
+.graphics .graphic-summary {
+  width: 50%;
+}
+
+#spaniards-living-abroad,
+#spaniards-living-us {
+  width: 100%;
+  aspect-ratio: 2/1.2;
+  height: auto;
+}
+
+/* footer */
+
+footer {
+  margin-top: 4rem !important;
+  border-top: 1px solid var(--green-300);
+}
+
+footer p {
+  padding: 5rem 0;
+  font-size: 1rem;
+}
+
 /* tablet L */
 @media only screen and (max-width: 1024px) {
   body {
     margin: 4.5rem auto;
-    padding: 0 100px;
+    padding: 0 2em;
   }
 
   .copy {
@@ -190,11 +268,12 @@ header {
   }
 
   .graphics-wrapper {
-    margin: 3em auto;
+    margin: 2em auto;
   }
 
   .visuals-consulate {
     flex-direction: column-reverse;
+    margin: 1rem auto 0 !important;
   }
 
   .visuals-consulate .information {
@@ -204,6 +283,14 @@ header {
   .visuals-consulate .consulate-map {
     width: 100%;
     align-items: center;
+  }
+
+  .about {
+    width: 100%;
+  }
+
+  .about .graphics {
+    max-width: 100%;
   }
 }
 
@@ -223,7 +310,7 @@ header {
   .standfirst {
     font-size: 1.3em;
     text-wrap: balance;
-    margin-bottom: 2rem;
+    padding-bottom: 14px;
   }
 
   .information-row {
@@ -231,12 +318,30 @@ header {
     flex-direction: column;
     align-items: flex-start;
   }
+
+  .about .graphics {
+    flex-direction: column;
+    align-items: start;
+    max-width: var(--max-width-container);
+  }
+
+  .about .graphics .br {
+    display: none;
+  }
+
+  .graphics .graphic-summary {
+    width: 100%;
+  }
+
+  .container-fluid {
+    margin: 2em auto 3em;
+  }
 }
 
 /*  tablet M*/
 @media only screen and (max-width: 600px) {
   body {
-    margin: 4.5rem 0;
+    margin: 2rem 0;
     padding: 10px;
     width: 100%;
   }
@@ -249,12 +354,29 @@ header {
   .standfirst {
     font-size: 1.3em;
     text-wrap: balance;
-    margin-bottom: 2rem;
+    padding-bottom: 14px;
+  }
+
+  .byline {
+    padding-bottom: 1rem;
   }
 
   .information-row {
-    gap: 1em;
+    gap: 0.5em;
     flex-direction: column;
     align-items: center;
+  }
+
+  #spaniards-living-abroad,
+  #spaniards-living-us {
+    aspect-ratio: 2/2;
+  }
+
+  footer {
+    margin-top: 2rem !important;
+  }
+
+  footer p {
+    padding: 2rem 0 0;
   }
 }

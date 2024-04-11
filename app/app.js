@@ -16,9 +16,6 @@ Promise.all([
   // total us
   d3.csv("./assets/data/cera_total_us.csv", parse.cera_consulates),
 
-  // us citizens in Spain
-  d3.csv("./assets/data/us_citizens_in_spain.csv", parse.us_citizens),
-
   // quotes
   d3.csv("./assets/data/quotes.csv", parse.quotes),
 
@@ -35,20 +32,20 @@ Promise.all([
   // map
   const us = files[2];
   const consulate_borders = files[3];
-  const consulate_jurisdiction = files[4];
+  // const consulate_jurisdiction = files[4];
   const ca_counties = files[5];
-  const points = files[9];
+  const points = files[8];
 
-  // area
   // const
+  const quotes = files[7];
 
-  const consulates_us_total = files[6].sort((a, b) => a.date - b.date);
-  const us_citizens = files[7].sort((a, b) => a.date - b.date);
-  const quotes = files[8];
+  // area chart
+  const dictionary = files[9];
+  const country_data = files[10];
 
+  // MANAGE AND TRANSFORM DATA //
   // add lonlat from consulates_es_info to consulates
   parse.addLonLat(consulates_es, consulates_es_info);
-
   const consulatesGroup = d3.groups(
     consulates_es_info,
     (g) => g.general_consulate
@@ -56,14 +53,13 @@ Promise.all([
 
   const consulatesGroupsTime = d3.groups(consulates_es, (g) => g.consulate_id);
 
-  const totalGroupTime = d3.groups(consulates_us_total, (g) => g.consulate_id);
-
-  const totalUS_inSpain = d3.groups(us_citizens, (g) => g.country);
-
   // TOTAL
   const dateExtent = d3.extent(consulates_es, (d) => d.date);
   const censusExtent = [0, d3.max(consulates_es, (d) => d.census)];
-  const censusTotalExtent = [0, d3.max(consulates_us_total, (d) => d.census)];
+
+  // AREA
+  // add translation to array
+  parse.translate(country_data, dictionary);
 
   // create map with information about spanish consulates
   const us_map = new mapConsulates({
@@ -128,9 +124,39 @@ Promise.all([
     info_id: "visuals-consulate",
   });
 
+  // create area chart
+  const label_n_sp = d3.sum(
+    country_data.filter((d) => d.year === 2023 && d.month === 12),
+    (d) => d.census
+  );
+
+  const area_by_country = new areaChart({
+    data: country_data,
+    dateExtent: d3.extent(country_data, (d) => d.date),
+    id: "spaniards-living-abroad",
+    stack: "country",
+    label_n: label_n_sp,
+    label_text: "live abroad",
+  });
+
+  const label_n_us = d3.sum(
+    consulates_es.filter((d) => d.year === 2023 && d.month === 12),
+    (d) => d.census
+  );
+
+  const area_by_state = new areaChart({
+    data: consulates_es,
+    dateExtent: d3.extent(consulates_es, (d) => d.date),
+    id: "spaniards-living-us",
+    stack: "consulate",
+    label_n: label_n_us,
+    label_text: "live in the US",
+  });
+
   // update on windows resize
   window.onresize = function () {
-    // doesn't need it
-    // bar_table.resize();
+    // consulatesInfo.redrawChart();
+    area_by_country.updateChart();
+    area_by_state.updateChart();
   };
 });
