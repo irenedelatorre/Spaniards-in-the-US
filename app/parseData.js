@@ -81,13 +81,14 @@ const parse = {
     };
   },
 
-  countryData: function (d) {
+  countryData: function (d, i) {
+    const month = +d.month < 10 ? `0${d.month}` : d.month;
     return {
       pais: d.pais,
       year: +d.year,
       month: +d.month,
       census: +d.censo,
-      date: new Date(`${d.year}-${d.month}-01`),
+      date: new Date(`${d.year}-${month}-01`),
     };
   },
 

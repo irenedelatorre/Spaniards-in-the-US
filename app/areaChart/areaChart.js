@@ -34,11 +34,13 @@ class areaChart {
       this.margin.b;
 
     // from https://observablehq.com/@d3/stacked-area-chart/2
-    const keys = d3.union(
+    const keys_all = d3.union(
       this.data
         .sort((a, b) => b.date - a.date || b.census - a.census)
         .map((d) => d[this.stack])
     );
+    const keys = [...new Set(keys_all)];
+
     const groups = d3.index(
       this.data,
       (d) => d.date,
