@@ -2,8 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>CERA - Españoles viviendo en Estados Unidos</title>
+    <title>Where do Spaniards live in the US?</title>
+    <meta title="Where do Spaniards live in the US?">
+    <meta name="twitter:title" content="Where do Spaniards live in the US?">
+    <meta property="og:title" content="Where do Spaniards live in the US?">
+    <meta name="description" content="
+        Spanish nationals that live outside Spain for more than a year are 
+        asked by the Government to register in a General Consulate. If they 
+        are of voting age, they become part of the Electoral Census of Spaniards
+        Residing Abroad (CERA). Although it is up to the person to do so, the
+        CERA dataset, incomplete and changing in nature, provides a snapshot of
+        where Spaniards study, work, or form a family abroad.">
     <meta name="author" content="Irene de la Torre Arenas" />
+
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=yes"
@@ -46,8 +57,8 @@
       </p>
       <p>
         Spain has
-        <span class="icon">
-          <img src="assets/imgs/dot-consulate.svg"></img>
+        <span class="icon" aria-hidden="true">
+          <img alt="icon" src="assets/imgs/dot-consulate.svg"></img>
           </span>
         <span class="highlight-consulate">nine general consulates</span>
         in the US, each covering
@@ -129,7 +140,15 @@
           <div class="graphic-summary">
             <h2>The number of Spaniards living abroad <span class="br"></br></span> doubled in 20 years...</h2>
             <p class="legend">CERA registrations by country and year</p>
-            <div id="spaniards-living-abroad"></div>
+            <div id="spaniards-living-abroad" 
+              aria-label="Graph showing the trend of the number of Spaniards 
+              living abroad for 20 years, from January 2003 to December 2023. 
+              It presents the CERA (Consular Register of Spanish Residents 
+              Abroad) registrations by country and year. As of December 2023, 
+              there are 2,390,267 Spaniards living abroad, indicating that 
+              the number has doubled in the last 20 years. The three countries 
+              with the most registrations are Argentina, France, and the US."
+            ></div>
           </div>
 
           <div class="graphic-summary">
@@ -138,7 +157,14 @@
               US Consulates has increased by 330 per cent
             </h2>
             <p class="legend">CERA registrations in the US consulates by year</p>
-            <div id="spaniards-living-us"></div>
+            <div id="spaniards-living-us" 
+              aria-label="Graph showing the trend of Spanish nationals registered 
+              in US Consulates from January 2003 to December 2023. It highlights 
+              a 330 per cent increase over the period. The three consulates with 
+              more Spaniards registered are Miami, New York, and Houston.
+              As of December 2023, 173,258 Spaniards live in the US, a number 
+              that has been steadily increasing over the last 20 years."
+            ></div>
           </div>
       </div>
       <div class="container">

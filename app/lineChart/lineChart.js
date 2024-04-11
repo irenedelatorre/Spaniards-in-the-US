@@ -71,7 +71,8 @@ class lineChart {
     this.plot = this.select
       .select("svg")
       .attr("width", this.width + this.margin.r + this.margin.l)
-      .attr("height", this.height + this.margin.b + this.margin.t);
+      .attr("height", this.height + this.margin.b + this.margin.t)
+      .attr("aria-hidden", true);
 
     this.axis_y.attr(
       "transform",

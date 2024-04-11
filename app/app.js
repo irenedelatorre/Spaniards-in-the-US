@@ -8,8 +8,7 @@ Promise.all([
   d3.json("./assets/map/counties-albers-10m.json"),
   // jurisdiction lines
   d3.json("./assets/map/consulate_jurisdictions_borders.json"),
-  // jurisdiction polygons
-  d3.json("./assets/map/consulate_jurisdictions.json"),
+
   // californian counties
   d3.csv("./assets/map/californian_counties.csv", parse.counties),
 
@@ -32,16 +31,15 @@ Promise.all([
   // map
   const us = files[2];
   const consulate_borders = files[3];
-  // const consulate_jurisdiction = files[4];
-  const ca_counties = files[5];
-  const points = files[8];
+  const ca_counties = files[4];
+  const points = files[7];
 
   // const
-  const quotes = files[7];
+  const quotes = files[6];
 
   // area chart
-  const dictionary = files[9];
-  const country_data = files[10];
+  const dictionary = files[8];
+  const country_data = files[9];
 
   // MANAGE AND TRANSFORM DATA //
   // add lonlat from consulates_es_info to consulates
