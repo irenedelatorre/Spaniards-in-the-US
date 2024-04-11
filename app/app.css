@@ -249,10 +249,10 @@ header {
 footer {
   margin-top: 4rem !important;
   border-top: 1px solid var(--green-300);
+  padding: 5rem 0 0 !important;
 }
 
 footer p {
-  padding: 5rem 0;
   font-size: 1rem;
 }
 
@@ -374,9 +374,6 @@ footer p {
 
   footer {
     margin-top: 2rem !important;
-  }
-
-  footer p {
-    padding: 2rem 0 0;
+    padding: 2rem 0 0 !important;
   }
 }
