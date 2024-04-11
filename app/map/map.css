@@ -106,6 +106,9 @@
   opacity: 0.9;
 }
 
-.shine {
-  mix-blend-mode: screen;
+@supports not (-moz-appearance: none) {
+  /* Add non-firefox CSS code here */
+  .shine {
+    mix-blend-mode: screen;
+  }
 }
