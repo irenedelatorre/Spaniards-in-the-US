@@ -103,6 +103,9 @@
     height: 30vh;
     min-height: 300px;
   }
+  .shine {
+    mix-blend-mode: screen;
+  }
 }
 
 /*  mobile and tablet M*/
@@ -145,5 +148,13 @@
 
   .map .consulates.sort-9 circle {
     stroke-width: 1.5px;
+  }
+  .shine {
+    mix-blend-mode: screen;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .shine {
+    mix-blend-mode: normal;
   }
 }
