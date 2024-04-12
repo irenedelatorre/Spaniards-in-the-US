@@ -5,6 +5,7 @@
   /* margin: 0 5em 6em; */
   aspect-ratio: 1.7 / 1;
   position: relative;
+  max-width: 100%;
 }
 
 /* CANVAS */

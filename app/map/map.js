@@ -103,8 +103,8 @@ class mapConsulates {
   getScale() {
     const this_scaleHeight = d3
       .scaleLinear()
-      .domain([250, 520, 610, 747])
-      .range([400, 1000, 1300, 1400]);
+      .domain([250, 520, 610, 747, 800])
+      .range([400, 1000, 1300, 1350, 1400]);
     return this_scaleHeight(this.div_height);
   }
 
@@ -486,8 +486,7 @@ class mapConsulates {
   }
 
   reDrawMap() {
-    this.ctx.clearRect(0, 0, this.div_width, this.div_height);
-
+    this.selectPlot.selectAll("canvas").remove();
     const new_width = document.getElementById(this.id).clientWidth;
 
     if (this.type === "nation") {
@@ -495,10 +494,10 @@ class mapConsulates {
       this.div_height = document.getElementById(this.id).clientHeight;
       if (new_width < this.canvasBrkPt) {
         this.plotMap.selectAll(".points").selectAll(".point").remove();
-        this.selectPlot.selectAll("canvas").remove();
+        // this.selectPlot.selectAll("canvas").remove();
       }
     } else {
-      this.selectPlot.selectAll("canvas").remove();
+      // this.selectPlot.selectAll("canvas").remove();
     }
 
     this.init();

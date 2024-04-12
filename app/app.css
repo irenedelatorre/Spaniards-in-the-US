@@ -82,7 +82,7 @@ italic {
 .container-fluid {
   margin: 5em auto 6em;
   width: 100%;
-  padding: 0;
+  padding: 0 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -335,6 +335,7 @@ footer p {
 
   .container-fluid {
     margin: 2em auto 3em;
+    padding: 0;
   }
 }
 
@@ -375,5 +376,9 @@ footer p {
   footer {
     margin-top: 2rem !important;
     padding: 2rem 0 0 !important;
+  }
+
+  .container-fluid {
+    padding: 0;
   }
 }
