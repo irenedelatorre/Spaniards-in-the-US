@@ -11,6 +11,10 @@ class mapConsulates {
     this.pts = item.pts;
     this.selectPlot = d3.select(`#${this.id}`);
     this.year = d3.max(this.data, (d) => d.year);
+    this.colorDot = "rgba(157, 216, 156, 0.9)";
+    this.yellow = "#ffd914";
+    this.strokeConsulate = "#002925";
+    this.canvasBrkPt = 700;
 
     this.div_width = !item.div_width
       ? document.getElementById(this.id).clientWidth
@@ -79,6 +83,23 @@ class mapConsulates {
     }
   }
 
+  createCanvas() {
+    this.canvas = this.selectPlot.insert("canvas").node();
+
+    const scale = 2;
+
+    this.canvas.width = scale * this.div_width;
+    this.canvas.height = scale * this.div_height;
+
+    this.ctx = this.canvas.getContext("2d");
+
+    this.ctx.globalCompositeOperation = "normal";
+
+    this.ctx.scale(scale, scale);
+    this.ctx.clearRect(0, 0, this.div_width, this.div_height);
+    this.ctx.translate(this.margin.l, this.margin.t);
+  }
+
   getScale() {
     const this_scaleHeight = d3
       .scaleLinear()
@@ -126,16 +147,25 @@ class mapConsulates {
 
   createSVG() {
     if (this.selectPlot.selectAll("svg").empty()) {
-      // Append svg to div
-      this.plot = this.selectPlot
-        .append("svg")
-        .attr("viewBox", [
-          0,
-          0,
-          this.width + this.margin.l + this.margin.r,
-          this.height + this.margin.t + this.margin.b,
-        ])
-        .attr("title", "Spaniards in the US");
+      if (this.type === "nation") {
+        // Append svg to div
+        this.plot = this.selectPlot
+          .append("svg")
+          .attr("viewBox", [0, 0, this.div_width, this.div_height])
+          .attr("width", this.div_width)
+          .attr("height", this.div_height)
+          .attr("title", "Spaniards in the US");
+      } else {
+        this.plot = this.selectPlot
+          .append("svg")
+          .attr("viewBox", [
+            0,
+            0,
+            this.width + this.margin.l + this.margin.r,
+            this.height + this.margin.t + this.margin.b,
+          ])
+          .attr("title", "Spaniards in the US");
+      }
 
       //create groups to put the content inside them
       this.plotMap = this.plot.append("g").attr("class", "map");
@@ -143,6 +173,14 @@ class mapConsulates {
       this.plotBubbles = this.plot.append("g").attr("class", "bubbles");
     } else {
       this.plot = this.selectPlot.select("svg");
+
+      if (this.type === "nation") {
+        // Append svg to div
+        this.plot
+          .attr("viewBox", [0, 0, this.div_width, this.div_height])
+          .attr("width", this.div_width)
+          .attr("height", this.div_height);
+      }
     }
 
     this.plotMap.attr(
@@ -248,7 +286,64 @@ class mapConsulates {
       .attr("cy", (d) => this.projection(d[1][0].lonlat)[1])
       .attr("r", 4);
 
-    this.drawPoints();
+    if (this.type === "nation" && this.div_width < this.canvasBrkPt) {
+      this.createCanvas();
+      this.drawPointsOnCanvas();
+    } else {
+      this.drawPoints();
+    }
+  }
+
+  drawPointsOnCanvas() {
+    this.ctx.clearRect(0, 0, this.div_width, this.div_height);
+
+    const pts = this.pts;
+
+    // pts
+    this.ctx.clear;
+    this.ctx.globalCompositeOperation = "screen";
+    for (var i = 0; i < pts.length; i++) {
+      const xy = this.projection(pts[i].xy);
+      this.drawDot(xy[0], xy[1], 0.5);
+    }
+
+    this.ctx.globalCompositeOperation = "normal";
+
+    // consulates
+    this.groups.forEach((d) => {
+      const xy = this.projection(d[1][0].lonlat);
+      this.drawConsulateCanvas(xy[0], xy[1], 5);
+    });
+  }
+
+  drawDot(x, y, r, color = this.colorDot) {
+    this.ctx.fillStyle = color;
+    this.ctx.beginPath();
+    this.ctx.arc(x, y, r, 0, 2 * Math.PI);
+    this.ctx.fill();
+    this.ctx.closePath();
+  }
+
+  drawConsulateCanvas(x, y, r) {
+    // bottom
+    this.ctx.fillStyle = this.strokeConsulate;
+    this.ctx.strokeStyle = "rgba(255, 255, 255, 0.6)";
+    this.ctx.lineWidth = 6;
+    this.ctx.beginPath();
+    this.ctx.arc(x, y, r, 0, 2 * Math.PI);
+    this.ctx.fill();
+    this.ctx.stroke();
+    this.ctx.closePath();
+
+    // top
+    this.ctx.fillStyle = this.yellow;
+    this.ctx.strokeStyle = this.strokeConsulate;
+    this.ctx.lineWidth = 2;
+    this.ctx.beginPath();
+    this.ctx.arc(x, y, r, 0, 2 * Math.PI);
+    this.ctx.fill();
+    this.ctx.stroke();
+    this.ctx.closePath();
   }
 
   drawPoints() {
@@ -377,12 +472,35 @@ class mapConsulates {
 
   updateThisMap(value) {
     this.consulate = value;
+    if (this.type === "nation" && this.div_width < this.canvasBrkPt) {
+      this.div_width = document.getElementById(this.id).clientWidth;
+      this.div_height = document.getElementById(this.id).clientHeight;
+      this.plotMap.selectAll(".points").selectAll(".point").remove();
+      this.selectPlot.selectAll("canvas").remove();
+    } else {
+      this.selectPlot.selectAll("canvas").remove();
+    }
     this.init();
     this.createSVG();
     this.drawUS();
   }
 
   reDrawMap() {
+    this.ctx.clearRect(0, 0, this.div_width, this.div_height);
+
+    const new_width = document.getElementById(this.id).clientWidth;
+
+    if (this.type === "nation") {
+      this.div_width = new_width;
+      this.div_height = document.getElementById(this.id).clientHeight;
+      if (new_width < this.canvasBrkPt) {
+        this.plotMap.selectAll(".points").selectAll(".point").remove();
+        this.selectPlot.selectAll("canvas").remove();
+      }
+    } else {
+      this.selectPlot.selectAll("canvas").remove();
+    }
+
     this.init();
     this.createSVG();
     this.drawUS();
