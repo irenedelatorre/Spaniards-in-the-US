@@ -230,11 +230,12 @@ header {
   display: flex;
   flex-direction: row;
   gap: 4em;
+  justify-content: space-around;
   /* margin: 0 auto 4em; */
 }
 
 .graphics .graphic-summary {
-  width: 50%;
+  width: calc(50% - 4em);
 }
 
 #spaniards-living-abroad,
