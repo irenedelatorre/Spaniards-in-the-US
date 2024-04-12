@@ -8,22 +8,26 @@ class Dropdown {
     this.info_id = item.info_id;
     this.jur_map = item.jur_map;
     this.nation_map = item.nation_map;
+    let thisConsulate = "All consulates";
 
     this.createDropdown();
 
     this.select.on("change", function () {
-      const thisConsulate = this.value;
+      thisConsulate = this.value;
       if (this.value === "All consulates") {
         d3.selectAll(`#${item.nation_id}`).classed("hide", false);
         d3.selectAll(`#${item.info_id}`).classed("hide", true);
         item.nation_map.updateThisMap(thisConsulate);
       } else {
         d3.selectAll(`#${item.nation_id}`).classed("hide", true);
+        d3.selectAll(`#${item.nation_id}`).select("svg").remove();
         d3.selectAll(`#${item.info_id}`).classed("hide", false);
         item.consulatesInfo.updateInfo(thisConsulate);
         item.jur_map.updateThisMap(thisConsulate);
       }
     });
+
+    this.consulate = thisConsulate;
   }
 
   createDropdown() {
@@ -33,5 +37,15 @@ class Dropdown {
       .join("option")
       .html((d) => d)
       .attr("value", (d) => d);
+  }
+
+  update() {
+    this.consulate = this.select.node().value;
+    if (this.consulate === "All consulates") {
+      this.nation_map.reDrawMap(this.consulate);
+    } else {
+      this.jur_map.updateThisMap(this.consulate);
+      this.consulatesInfo.updateChart(this.consulate);
+    }
   }
 }

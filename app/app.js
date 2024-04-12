@@ -153,7 +153,8 @@ Promise.all([
 
   // update on windows resize
   window.onresize = function () {
-    us_map.reDrawMap();
+    // us_map.reDrawMap("All consulates");
+    map_dropdown.update();
     area_by_country.updateChart();
     area_by_state.updateChart();
   };

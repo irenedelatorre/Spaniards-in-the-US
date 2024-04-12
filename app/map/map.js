@@ -25,6 +25,7 @@ class mapConsulates {
     this.consulate = "All";
 
     this.init();
+
     if (this.type === "nation") {
       this.createSVG();
       this.drawUS();
@@ -284,7 +285,7 @@ class mapConsulates {
       .attr("class", (d) => `consulate ${d[0]}`)
       .attr("cx", (d) => this.projection(d[1][0].lonlat)[0])
       .attr("cy", (d) => this.projection(d[1][0].lonlat)[1])
-      .attr("r", 4);
+      .attr("r", this.type !== "nation" ? 10 : 4);
 
     if (this.type === "nation" && this.div_width < this.canvasBrkPt) {
       this.createCanvas();
@@ -366,11 +367,7 @@ class mapConsulates {
       .transition()
       .duration(500)
       .delay((d, i) =>
-        this.type === "nation" && this.width < 500
-          ? (i * Math.random()) / 4
-          : this.type === "nation" && this.width >= 500
-          ? (i * Math.random()) / 2
-          : i * Math.random()
+        this.type === "nation" ? (i * Math.random()) / 2 : i * Math.random()
       )
       .style("opacity", 1)
       .on("end", (d) => {
@@ -485,7 +482,7 @@ class mapConsulates {
     this.drawUS();
   }
 
-  reDrawMap() {
+  reDrawMap(consulate) {
     this.selectPlot.selectAll("canvas").remove();
     const new_width = document.getElementById(this.id).clientWidth;
 
