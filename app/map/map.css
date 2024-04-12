@@ -4,6 +4,19 @@
   min-height: 520px;
   /* margin: 0 5em 6em; */
   aspect-ratio: 1.7 / 1;
+  position: relative;
+  max-width: 100%;
+}
+
+/* CANVAS */
+#map-nation svg,
+#map-nation canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
 }
 
 #map-jurisdiction {
@@ -84,6 +97,8 @@
   opacity: 0.9;
 }
 
+/* CANVAS */
+
 @supports not (-moz-appearance: none) {
   /* Add non-firefox CSS code here */
   .shine {
@@ -115,38 +130,38 @@
     min-height: 250px;
   }
 
-  .map .nation.sort-0,
-  .map .states.sort-0 {
+  #map-nation .nation.sort-0,
+  #map-nation .states.sort-0 {
     stroke-width: 0.25rem;
   }
 
-  .map .nation.sort-5,
-  .map .jurisdiction-polygons.sort-5 path {
+  #map-nation .nation.sort-5,
+  #map-nation .jurisdiction-polygons.sort-5 path {
     stroke-width: 1px;
   }
 
-  .map .states {
+  #map-nation .states {
     stroke-width: 0.5px;
   }
 
-  .map .counties {
+  #map-nation .counties {
     stroke-width: 0.25px;
   }
 
-  .map .jurisdiction-borders.sort-6 path {
+  #map-nation .jurisdiction-borders.sort-6 path {
     stroke-width: 3px;
     filter: blur(0.5px);
   }
 
-  .map .jurisdiction-borders.sort-7 path {
+  #map-nation .jurisdiction-borders.sort-7 path {
     stroke-width: 1px;
   }
 
-  .map .consulates.sort-8 circle {
+  #map-nation .consulates.sort-8 circle {
     stroke-width: 4px;
   }
 
-  .map .consulates.sort-9 circle {
+  #map-nation .consulates.sort-9 circle {
     stroke-width: 1.5px;
   }
   .shine {

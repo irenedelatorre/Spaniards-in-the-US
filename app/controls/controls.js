@@ -12,6 +12,7 @@ class Dropdown {
     this.createDropdown();
 
     this.select.on("change", function () {
+      const thisConsulate = this.value;
       if (this.value === "All consulates") {
         d3.selectAll(`#${item.nation_id}`).classed("hide", false);
         d3.selectAll(`#${item.info_id}`).classed("hide", true);
@@ -19,7 +20,6 @@ class Dropdown {
       } else {
         d3.selectAll(`#${item.nation_id}`).classed("hide", true);
         d3.selectAll(`#${item.info_id}`).classed("hide", false);
-        const thisConsulate = this.value;
         item.consulatesInfo.updateInfo(thisConsulate);
         item.jur_map.updateThisMap(thisConsulate);
       }
